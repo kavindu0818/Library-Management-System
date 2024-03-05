@@ -1,18 +1,18 @@
 package org.example.Controller.Book;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.Entity.Book;
 import org.example.Tm.BooksTm;
 import org.example.bo.BookBoimpl;
 import org.example.dto.BookDto;
@@ -33,6 +33,9 @@ public class BookForm {
     public Label lblBookCategory;
     public JFXTextArea lblBookDescription;
     public TextField textSeacrhBookTitle;
+    public JFXTextField txtBookTitle;
+    public JFXTextField txtBookAutour;
+    public JFXComboBox cmbBookCatougery;
 
     BookBoimpl bookBoimpl = new BookBoimpl();
 
@@ -40,6 +43,15 @@ public class BookForm {
     public void initialize() {
         setCellValueFactory();
         loadAllBooks();
+        setValueCmb();
+    }
+
+    private void setValueCmb() {
+        //ComboBox<String> comboBox = new ComboBox<>();
+
+        ObservableList<String> catogery = FXCollections.observableArrayList("Kids","Education");
+
+        cmbBookCatougery.setItems(catogery);
     }
 
     private void setCellValueFactory() {
@@ -88,10 +100,16 @@ public class BookForm {
 
     public void btnBookUpdateOnAction(ActionEvent actionEvent) {
         String id = lblBookId.getText();
-        String title = lblBookTitle.getText();
-        String authour = lblBookAuthour.getText();
-        String cat = lblBookCategory.getText();
+        String title = txtBookTitle.getText();
+        String authour = txtBookAutour.getText();
+        String cat = (String) cmbBookCatougery.getValue();
         String des = lblBookDescription.getText();
+
+        var book = new BookDto(id,title,authour,cat,des);
+
+        boolean isupdate = bookBoimpl.updateBook(book);
+
+        clearField();
 
 
     }
@@ -100,6 +118,14 @@ public class BookForm {
         String id = lblBookId.getText();
 
         boolean isDelete = bookBoimpl.deleteBook(id);
+
+        clearField();
+    }
+
+    public void clearField(){
+        txtBookTitle.clear();
+        txtBookAutour.clear();
+        lblBookDescription.clear();
     }
 
     public void btnSearchBookOnAction(ActionEvent actionEvent) {
@@ -110,9 +136,9 @@ public class BookForm {
 
             for (BookDto bookDto:bookDtos){
                 lblBookId.setText(bookDto.getId());
-                lblBookTitle.setText(bookDto.getTitle());
-                lblBookAuthour.setText(bookDto.getAuthor());
-                lblBookCategory.setText(bookDto.getCatougery());
+                txtBookTitle.setText(bookDto.getTitle());
+                txtBookAutour.setText(bookDto.getAuthor());
+                cmbBookCatougery.setValue(bookDto.getCatougery());
                 lblBookDescription.setText(bookDto.getStatus());
 
             }

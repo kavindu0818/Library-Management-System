@@ -53,7 +53,22 @@ public class BookDaoimpl {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        session.delete(id);
+        Book bookToDelete = session.get(Book.class, id);
+
+
+        session.delete(bookToDelete);
+
+        transaction.commit();
+        session.close();
+
+        return true;
+    }
+
+    public boolean update(Book book) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(book);
 
         transaction.commit();
         session.close();

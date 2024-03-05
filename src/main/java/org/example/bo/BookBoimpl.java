@@ -53,4 +53,11 @@ public class BookBoimpl {
         boolean isDelete = bookDaoimpl.DeleteBook(id);
         return isDelete;
     }
+
+    public boolean updateBook(BookDto book) {
+        Book book1 = new Book(book.getId(),book.getTitle(),book.getAuthor(),book.getCatougery(),book.getStatus());
+        boolean isUpdate = bookDaoimpl.update(book1);
+
+        return isUpdate;
+    }
 }
