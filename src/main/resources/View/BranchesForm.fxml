@@ -69,8 +69,8 @@
           <TableColumn fx:id="colBranchId" prefWidth="118.0" text="Branch ID" />
           <TableColumn fx:id="colBranchName" prefWidth="224.0" text="Branch Name" />
             <TableColumn fx:id="colBranchLocation" prefWidth="262.0" text="Branch Location" />
-            <TableColumn fx:id="colOpenTime" prefWidth="146.0" text="Open Time" />
-            <TableColumn fx:id="colClosseTime" prefWidth="160.0" text="Close Time" />
+            <TableColumn fx:id="colOpenTime" prefWidth="147.0" text="Open Time" />
+            <TableColumn fx:id="colClosseTime" prefWidth="159.0" text="Close Time" />
             <TableColumn fx:id="colNow" prefWidth="135.0" />
         </columns>
       </TableView>
