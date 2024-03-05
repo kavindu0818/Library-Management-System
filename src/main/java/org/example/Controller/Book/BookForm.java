@@ -111,7 +111,6 @@ public class BookForm {
 
         clearField();
 
-
     }
 
     public void btnBookDeleteOnAction(ActionEvent actionEvent) {

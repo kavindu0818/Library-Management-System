@@ -15,7 +15,10 @@ public class AdminDashboardForm {
 
     }
 
-    public void btnBranchFormOnAction(ActionEvent actionEvent) {
+    public void btnBranchFormOnAction(ActionEvent actionEvent) throws IOException {
+        AncMain.getChildren().clear();
+        AncMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/BranchesForm.fxml")));
+
     }
 
     public void btnDashBoardOnAction(ActionEvent actionEvent) {
