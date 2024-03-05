@@ -52,26 +52,26 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="22.0" layoutY="71.0" />
-            <JFXTextField layoutX="187.0" layoutY="70.0" prefHeight="25.0" prefWidth="198.0" />
-            <JFXTextField layoutX="416.0" layoutY="68.0" prefHeight="25.0" prefWidth="198.0" />
-            <JFXTextField layoutX="20.0" layoutY="141.0" />
-            <JFXTextField layoutX="185.0" layoutY="139.0" />
-            <JFXButton layoutX="472.0" layoutY="166.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Submit" textFill="WHITE">
+            <JFXTextField fx:id="txtBranchID" layoutX="22.0" layoutY="71.0" />
+            <JFXTextField fx:id="txtBranchName" layoutX="187.0" layoutY="70.0" prefHeight="25.0" prefWidth="198.0" />
+            <JFXTextField fx:id="txtBranchLocation" layoutX="416.0" layoutY="68.0" prefHeight="25.0" prefWidth="198.0" />
+            <JFXTextField fx:id="txtOpenTime" layoutX="20.0" layoutY="141.0" />
+            <JFXTextField fx:id="txtCloseeTime" layoutX="185.0" layoutY="139.0" />
+            <JFXButton layoutX="472.0" layoutY="166.0" onAction="#btnSSubmitOnAction" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Submit" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
          </children>
       </AnchorPane>
-      <TableView layoutX="25.0" layoutY="342.0" prefHeight="200.0" prefWidth="1046.0">
+      <TableView fx:id="tblBranchdetails" layoutX="25.0" layoutY="342.0" prefHeight="200.0" prefWidth="1046.0">
         <columns>
-          <TableColumn prefWidth="118.0" text="Branch ID" />
-          <TableColumn prefWidth="224.0" text="Branch Name" />
-            <TableColumn prefWidth="262.0" text="Branch Location" />
-            <TableColumn prefWidth="146.0" text="Open Time" />
-            <TableColumn prefWidth="160.0" text="Close Time" />
-            <TableColumn prefWidth="135.0" />
+          <TableColumn fx:id="colBranchId" prefWidth="118.0" text="Branch ID" />
+          <TableColumn fx:id="colBranchName" prefWidth="224.0" text="Branch Name" />
+            <TableColumn fx:id="colBranchLocation" prefWidth="262.0" text="Branch Location" />
+            <TableColumn fx:id="colOpenTime" prefWidth="146.0" text="Open Time" />
+            <TableColumn fx:id="colClosseTime" prefWidth="160.0" text="Close Time" />
+            <TableColumn fx:id="colNow" prefWidth="135.0" />
         </columns>
       </TableView>
       <AnchorPane layoutX="671.0" layoutY="10.0" prefHeight="321.0" prefWidth="396.0" style="-fx-background-color: #ddeaf0;">
@@ -86,13 +86,13 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField layoutX="28.0" layoutY="39.0" />
-            <JFXButton layoutX="183.0" layoutY="39.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Search" textFill="WHITE">
+            <TextField fx:id="txtSeaarchBranch" layoutX="28.0" layoutY="39.0" />
+            <JFXButton layoutX="183.0" layoutY="39.0" onAction="#btnSearchBranchOnAction" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Search" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXTextField layoutX="31.0" layoutY="97.0" style="-fx-background-color: white;" />
+            <JFXTextField fx:id="txt2barnchId" layoutX="31.0" layoutY="97.0" style="-fx-background-color: white;" />
             <Label layoutX="31.0" layoutY="80.0" text="Branch ID">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -103,13 +103,13 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="198.0" layoutY="96.0" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: white;" />
+            <JFXTextField fx:id="txt2BranchName" layoutX="198.0" layoutY="96.0" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: white;" />
             <Label layoutX="33.0" layoutY="128.0" text="Branch Location">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="34.0" layoutY="144.0" prefHeight="25.0" prefWidth="339.0" style="-fx-background-color: white;" />
+            <JFXTextField fx:id="txt2BranchLoaaction" layoutX="34.0" layoutY="144.0" prefHeight="25.0" prefWidth="339.0" style="-fx-background-color: white;" />
             <Label layoutX="195.0" layoutY="175.0" text="Close Time">
                <font>
                   <Font name="System Bold" size="12.0" />
@@ -120,19 +120,19 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField layoutX="198.0" layoutY="191.0" style="-fx-background-color: white;" />
-            <JFXTextField layoutX="33.0" layoutY="191.0" style="-fx-background-color: white;" />
-            <JFXButton layoutX="283.0" layoutY="289.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Delete" textFill="WHITE">
+            <JFXTextField fx:id="txt2CloseTime" layoutX="198.0" layoutY="191.0" style="-fx-background-color: white;" />
+            <JFXTextField fx:id="txt2OpenTime" layoutX="33.0" layoutY="191.0" style="-fx-background-color: white;" />
+            <JFXButton layoutX="283.0" layoutY="289.0" onAction="#btnDeleteBranchOnAction" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Delete" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="179.0" layoutY="290.0" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Update" textFill="WHITE">
+            <JFXButton layoutX="179.0" layoutY="290.0" onAction="#btnBranchUpdateOnAction" prefHeight="25.0" prefWidth="91.0" style="-fx-background-color: #0a2145; -fx-background-radius: 20;" text="Update" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </JFXButton>
-            <JFXComboBox layoutX="35.0" layoutY="242.0" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: white;" />
+            <JFXComboBox fx:id="cmbBranchNow" layoutX="35.0" layoutY="242.0" prefHeight="25.0" prefWidth="210.0" style="-fx-background-color: white;" />
             <Label layoutX="34.0" layoutY="225.0" text="Branch at this time">
                <font>
                   <Font name="System Bold" size="12.0" />

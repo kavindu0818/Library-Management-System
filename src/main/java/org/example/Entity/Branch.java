@@ -12,14 +12,14 @@ public class Branch {
     private String branchId;
     private String branchName;
     private String location;
-    private Time openTime;
-    private Time closeTime;
+    private String openTime;
+    private String closeTime;
     private String oORc;
 
     public Branch() {
     }
 
-    public Branch(String branchId, String branchName, String location, Time openTime, Time closeTime, String oORc) {
+    public Branch(String branchId, String branchName, String location, String openTime, String closeTime, String oORc) {
         this.branchId = branchId;
         this.branchName = branchName;
         this.location = location;
@@ -52,19 +52,19 @@ public class Branch {
         this.location = location;
     }
 
-    public Time getOpenTime() {
+    public String getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(Time openTime) {
+    public void setOpenTime(String openTime) {
         this.openTime = openTime;
     }
 
-    public Time getCloseTime() {
+    public String getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(Time closeTime) {
+    public void setCloseTime(String closeTime) {
         this.closeTime = closeTime;
     }
 
