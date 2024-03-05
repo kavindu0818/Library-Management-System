@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="568.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.BorrowingBooks.BorrowingBooksForm">
+   <children>
+      <Label layoutX="46.0" layoutY="41.0" text="Available Books">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="44.0" layoutY="76.0" prefHeight="200.0" prefWidth="619.0">
+        <columns>
+          <TableColumn prefWidth="149.0" text="Book Id" />
+          <TableColumn prefWidth="155.0" text="Book Name" />
+            <TableColumn prefWidth="147.0" text="Author" />
+            <TableColumn prefWidth="166.0" text="Category" />
+        </columns>
+      </TableView>
+      <Label layoutX="44.0" layoutY="311.0" text="Borrowing Books">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView layoutX="45.0" layoutY="350.0" prefHeight="200.0" prefWidth="619.0">
+         <columns>
+            <TableColumn prefWidth="149.0" text="Book Id" />
+            <TableColumn prefWidth="155.0" text="Book Name" />
+            <TableColumn prefWidth="147.0" text="Author" />
+            <TableColumn prefWidth="166.0" text="Category" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>

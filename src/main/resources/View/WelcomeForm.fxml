@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="411.0" prefWidth="661.0" style="-fx-background-color: #C1CFDD;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.Login.WelcomeFormController">
+   <children>
+      <AnchorPane prefHeight="47.0" prefWidth="710.0" style="-fx-background-color: white;" />
+      <Label layoutX="99.0" layoutY="96.0" text="The" textFill="#265b85">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="135.0" text="Library Management" textFill="#265b85">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="101.0" layoutY="172.0" text="System" textFill="#265b85">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="100.0" layoutY="225.0" prefHeight="17.0" prefWidth="404.0" text="Welcome to our Library Management System - your gateway to organized," />
+      <Label layoutX="97.0" layoutY="242.0" text=" efficient, and accessible resources" />
+      <JFXButton layoutX="99.0" layoutY="271.0" onAction="#btnAdminOnAction" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: #255B85;" text="Admin" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="222.0" layoutY="271.0" onAction="#btnUserOnAction" prefHeight="25.0" prefWidth="114.0" style="-fx-background-insets: #255B85;" text="User">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>
