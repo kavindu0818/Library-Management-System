@@ -22,6 +22,14 @@ public class WelcomeFormController {
 
     }
 
-    public void btnUserOnAction(ActionEvent actionEvent) {
+    public void btnUserOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/View/UserLoginForm.fxml"));
+        Scene scene = new Scene(anchorPane);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("User");
+        stage.centerOnScreen();
+        stage.show();
+
     }
 }
