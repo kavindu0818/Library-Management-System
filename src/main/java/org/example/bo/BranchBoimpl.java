@@ -39,4 +39,16 @@ public class BranchBoimpl {
         return branchDtoList;
 
     }
+
+    public boolean updateBranch(BranchDto branch) {
+        Branch branch1 = new Branch(branch.getBranchId(),branch.getBranchName(),branch.getLocation(),branch.getOpenTime(),branch.getCloseTime(),branch.getoORc());
+        boolean isUpdate = branchDaoimpl.update(branch1);
+        return isUpdate;
+
+    }
+
+    public boolean deleteBarnch(String id) {
+        boolean isDelete = branchDaoimpl.delete(id);
+        return isDelete;
+    }
 }

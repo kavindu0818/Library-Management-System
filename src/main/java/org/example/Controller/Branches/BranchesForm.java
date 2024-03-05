@@ -103,6 +103,8 @@ public class BranchesForm {
         var branch = new BranchDto(id,branchName,location,openTime,closeTime,now);
 
         boolean isSave = branchBoimpl.branchSave(branch);
+
+        clearField2();
     }
 
     public void btnSearchBranchOnAction(ActionEvent actionEvent) {
@@ -125,8 +127,41 @@ public class BranchesForm {
     }
 
     public void btnDeleteBranchOnAction(ActionEvent actionEvent) {
+        String id = txt2barnchId.getText();
+
+        boolean isDelete = branchBoimpl.deleteBarnch(id);
+
+        clearField1();
+
     }
 
     public void btnBranchUpdateOnAction(ActionEvent actionEvent) {
+        String id = txt2barnchId.getText();
+        String name = txt2BranchName.getText();
+        String location = txt2BranchLoaaction.getText();
+        String openT = txt2OpenTime.getText();
+        String closeT = txt2CloseTime.getText();
+        String now = (String) cmbBranchNow.getValue();
+
+        var branch = new BranchDto(id,name,location,openT,closeT,now);
+
+        boolean isUpdate = branchBoimpl.updateBranch(branch);
+        clearField1();
+    }
+
+    public void clearField1(){
+        txt2barnchId.clear();
+        txt2BranchName.clear();
+        txt2BranchLoaaction.clear();
+        txt2OpenTime.clear();
+        txt2CloseTime.clear();
+    }
+
+    public void clearField2(){
+        txtBranchID.clear();
+        txtBranchName.clear();
+        txtBranchLocation.clear();
+        txtOpenTime.clear();
+        txtCloseeTime.clear();
     }
 }

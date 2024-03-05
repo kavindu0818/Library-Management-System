@@ -48,4 +48,29 @@ public class BranchDaoimpl {
         return resultList;
     }
 
+    public boolean update(Branch branch1) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(branch1);
+
+        transaction.commit();
+        session.close();
+
+        return true;
+    }
+
+    public boolean delete(String id) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Branch branch = session.get(Branch.class,id);
+
+        session.delete(branch);
+
+        transaction.commit();
+        session.close();
+
+        return true;
+    }
 }
