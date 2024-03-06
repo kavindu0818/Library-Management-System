@@ -12,9 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import org.example.Entity.Book;
 import org.example.Tm.BooksTm;
-import org.example.bo.BookBoimpl;
+import org.example.bo.impl.BookBoimpl;
 import org.example.dto.BookDto;
 
 import java.io.IOException;

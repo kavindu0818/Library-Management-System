@@ -1,8 +1,7 @@
-package org.example.bo;
+package org.example.bo.impl;
 
 import org.example.Entity.Book;
-import org.example.Tm.BooksTm;
-import org.example.dao.BookDaoimpl;
+import org.example.dao.impl.BookDaoimpl;
 import org.example.dto.BookDto;
 
 import java.util.ArrayList;

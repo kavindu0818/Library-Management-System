@@ -1,7 +1,7 @@
-package org.example.bo;
+package org.example.bo.impl;
 
 import org.example.Entity.Branch;
-import org.example.dao.BranchDaoimpl;
+import org.example.dao.impl.BranchDaoimpl;
 import org.example.dto.BranchDto;
 
 import java.util.ArrayList;

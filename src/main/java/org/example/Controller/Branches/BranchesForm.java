@@ -9,14 +9,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.example.Tm.BooksTm;
 import org.example.Tm.BranchTm;
-import org.example.bo.BranchBoimpl;
-import org.example.dto.BookDto;
+import org.example.bo.impl.BranchBoimpl;
 import org.example.dto.BranchDto;
 
-import javax.sql.rowset.serial.SerialStruct;
-import java.sql.Time;
 import java.util.List;
 
 public class BranchesForm {
