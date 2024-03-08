@@ -14,22 +14,23 @@ public class BookHandOver {
     private String autour;
     private String catougery;
     private String status;
-    private String cusID;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User author;
+
+  @ManyToOne
+  @JoinColumn(name = "userId", nullable = false)
+    private User cusID;
 
     public BookHandOver() {
+
     }
 
-    public BookHandOver(String id, String title, String autour, String catougery, String status, int cusID) {
+    public BookHandOver(String id, String title, String autour, String catougery, String status, User cusID) {
         this.id = id;
         this.title = title;
         this.autour = autour;
         this.catougery = catougery;
         this.status = status;
-        this.cusID = String.valueOf(cusID);
+        this.cusID = cusID;
     }
 
     public String getId() {
@@ -72,23 +73,11 @@ public class BookHandOver {
         this.status = status;
     }
 
-    public int getCusID() {
-        return Integer.parseInt(cusID);
+    public User getCusID() {
+        return cusID;
     }
 
-    public void setCusID(int cusID) {
-        this.cusID = String.valueOf(cusID);
-    }
-
-    @Override
-    public String toString() {
-        return "BookHandOver{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", autour='" + autour + '\'' +
-                ", catougery='" + catougery + '\'' +
-                ", status='" + status + '\'' +
-                ", cusID='" + cusID + '\'' +
-                '}';
+    public void setCusID(User cusID) {
+        this.cusID = cusID;
     }
 }

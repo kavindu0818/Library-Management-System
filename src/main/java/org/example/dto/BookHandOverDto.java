@@ -3,25 +3,23 @@ import org.example.Entity.User;
 
 public class BookHandOverDto {
 
-        private String id;
-        private String title;
-        private String autour;
-        private String catougery;
-        private String status;
-        private String cusID;
-        private User author;
+    private String id;
+    private String title;
+    private String autour;
+    private String catougery;
+    private String status;
+    private int cusID;
 
     public BookHandOverDto() {
     }
 
-    public BookHandOverDto(String id, String title, String autour, String catougery, String status, String cusID, User author) {
+    public BookHandOverDto(String id, String title, String autour, String catougery, String status, int cusID) {
         this.id = id;
         this.title = title;
         this.autour = autour;
         this.catougery = catougery;
         this.status = status;
         this.cusID = cusID;
-        this.author = author;
     }
 
     public String getId() {
@@ -64,20 +62,12 @@ public class BookHandOverDto {
         this.status = status;
     }
 
-    public String getCusID() {
+    public int getCusID() {
         return cusID;
     }
 
-    public void setCusID(String cusID) {
+    public void setCusID(int cusID) {
         this.cusID = cusID;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
     }
 
     @Override
@@ -88,8 +78,7 @@ public class BookHandOverDto {
                 ", autour='" + autour + '\'' +
                 ", catougery='" + catougery + '\'' +
                 ", status='" + status + '\'' +
-                ", cusID='" + cusID + '\'' +
-                ", author=" + author +
+                ", cusID=" + cusID +
                 '}';
     }
 }

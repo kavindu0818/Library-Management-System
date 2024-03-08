@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.bo.impl.UserBoimpl;
-import org.example.dto.BookDto;
 import org.example.dto.UserDto;
 
 import java.io.IOException;
@@ -24,8 +23,8 @@ public class UserLogInSecoundFormController {
     String pas;
     public static String id;
 
-    public static String sendId(){
-        return id;
+    public static int sendId(){
+        return Integer.parseInt(id);
     }
 
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {

@@ -7,10 +7,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.Controller.UserLogin.UserLogInSecoundFormController;
+import org.example.Entity.User;
 import org.example.Tm.BookingTm;
 import org.example.Tm.BooksTm;
 import org.example.bo.impl.BookBoimpl;
+import org.example.bo.impl.BookHandOverimpl;
 import org.example.dto.BookDto;
+import org.example.dto.BookHandOverDto;
 
 import java.util.List;
 
@@ -34,8 +37,9 @@ public class UserBookinFormController {
 
     BookBoimpl bookBoimpl = new BookBoimpl();
     UserLogInSecoundFormController userLogInSecoundFormController = new UserLogInSecoundFormController();
+    BookHandOverimpl bookHandOverimpl = new BookHandOverimpl();
 
-    String userId = userLogInSecoundFormController.sendId();
+    int userId = userLogInSecoundFormController.sendId();
 
 
     public void initialize(){
@@ -92,6 +96,14 @@ public class UserBookinFormController {
       String author = bookDto.getAuthor();
       String catougery = bookDto.getCatougery();
       String status = bookDto.getStatus();
+
+        User user = new User();
+        user.setPhoneNumber(userId);
+
+      var booking = new BookHandOverDto(id,title,author,catougery,status,userId);
+
+
+      boolean isSave = bookHandOverimpl.BookingHandSave(booking);
 
 
         System.out.println( "me ena badu "+id+" "+title + " ");

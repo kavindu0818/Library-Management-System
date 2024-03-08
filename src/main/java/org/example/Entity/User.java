@@ -1,13 +1,14 @@
 package org.example.Entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import org.hibernate.annotations.CascadeType;
+
 
 import java.util.List;
 
-import static org.hibernate.annotations.CascadeType.*;
+
 
 @Entity
 public class User {
@@ -20,7 +21,7 @@ public class User {
     private String gmail;
 
 
-    @OneToMany(mappedBy = "author")  // Updated to include CascadeType.ALL
+    @OneToMany(mappedBy = "cusID", cascade = CascadeType.ALL)
     private List<BookHandOver> books;
 
     public User(int phoneNumber, String fullName, String userName, String password, String gmail) {
