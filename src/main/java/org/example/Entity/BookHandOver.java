@@ -1,26 +1,35 @@
-package org.example.Tm;
+package org.example.Entity;
 
-import javafx.scene.control.Button;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-public class BookHandOverTm {
+@Entity
+public class BookHandOver {
 
+    @Id
     private String id;
     private String title;
     private String autour;
-    private String cat;
+    private String catougery;
     private String status;
-    private Button button;
+    private String cusID;
 
-    public BookHandOverTm() {
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    private User author;
+
+    public BookHandOver() {
     }
 
-    public BookHandOverTm(String id, String title, String autour, String cat, String status, Button button) {
+    public BookHandOver(String id, String title, String autour, String catougery, String status, int cusID) {
         this.id = id;
         this.title = title;
         this.autour = autour;
-        this.cat = cat;
+        this.catougery = catougery;
         this.status = status;
-        this.button = button;
+        this.cusID = String.valueOf(cusID);
     }
 
     public String getId() {
@@ -47,12 +56,12 @@ public class BookHandOverTm {
         this.autour = autour;
     }
 
-    public String getCat() {
-        return cat;
+    public String getCatougery() {
+        return catougery;
     }
 
-    public void setCat(String cat) {
-        this.cat = cat;
+    public void setCatougery(String catougery) {
+        this.catougery = catougery;
     }
 
     public String getStatus() {
@@ -63,23 +72,23 @@ public class BookHandOverTm {
         this.status = status;
     }
 
-    public Button getButton() {
-        return button;
+    public int getCusID() {
+        return Integer.parseInt(cusID);
     }
 
-    public void setButton(Button button) {
-        this.button = button;
+    public void setCusID(int cusID) {
+        this.cusID = String.valueOf(cusID);
     }
 
     @Override
     public String toString() {
-        return "BookHandOverTm{" +
+        return "BookHandOver{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", autour='" + autour + '\'' +
-                ", cat='" + cat + '\'' +
+                ", catougery='" + catougery + '\'' +
                 ", status='" + status + '\'' +
-                ", button=" + button +
+                ", cusID='" + cusID + '\'' +
                 '}';
     }
 }

@@ -2,6 +2,12 @@ package org.example.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import org.hibernate.annotations.CascadeType;
+
+import java.util.List;
+
+import static org.hibernate.annotations.CascadeType.*;
 
 @Entity
 public class User {
@@ -13,8 +19,9 @@ public class User {
     private String password;
     private String gmail;
 
-    public User() {
-    }
+
+    @OneToMany(mappedBy = "author")  // Updated to include CascadeType.ALL
+    private List<BookHandOver> books;
 
     public User(int phoneNumber, String fullName, String userName, String password, String gmail) {
         this.phoneNumber = phoneNumber;
@@ -23,6 +30,11 @@ public class User {
         this.password = password;
         this.gmail = gmail;
     }
+
+    public User() {
+
+    }
+
 
     public int getPhoneNumber() {
         return phoneNumber;
@@ -64,14 +76,11 @@ public class User {
         this.gmail = gmail;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "phoneNumber=" + phoneNumber +
-                ", fullName='" + fullName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", gmail='" + gmail + '\'' +
-                '}';
+    public List<BookHandOver> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookHandOver> books) {
+        this.books = books;
     }
 }

@@ -13,9 +13,8 @@ public class UserBoimpl {
 
     public boolean userSave(UserDto us) {
 
-        User user = new User(us.getPhoneNumber(),us.getFullName(),us.getUserName(),us.getPassword(),us.getGmail());
-        boolean isSave = userDaoimpl.save(user);
-        return isSave;
+        User user = new User(us.getPhoneNumber(), us.getFullName(), us.getUserName(), us.getPassword(), us.getGmail());
+        return userDaoimpl.save(user);
     }
 
     public List<UserDto> getAllUser(String pas, String userName) {
