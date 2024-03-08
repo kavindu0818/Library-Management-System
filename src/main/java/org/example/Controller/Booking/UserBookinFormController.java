@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.Controller.UserLogin.UserLogInSecoundFormController;
 import org.example.Tm.BookingTm;
 import org.example.Tm.BooksTm;
 import org.example.bo.impl.BookBoimpl;
@@ -30,10 +31,14 @@ public class UserBookinFormController {
     public TableColumn colHandOverOverDate;
     public TableColumn colHandOverButton;
 
+
     BookBoimpl bookBoimpl = new BookBoimpl();
+    UserLogInSecoundFormController userLogInSecoundFormController = new UserLogInSecoundFormController();
+
+    String userId = userLogInSecoundFormController.sendId();
 
 
-  public void initialize(){
+    public void initialize(){
       loadAllBooks();
       setCellValueFactory();
   }
@@ -87,6 +92,9 @@ public class UserBookinFormController {
       String author = bookDto.getAuthor();
       String catougery = bookDto.getCatougery();
       String status = bookDto.getStatus();
+
+
+        System.out.println( "me ena badu "+id+" "+title + " ");
 
 
 
