@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.Controller.Booking.UserBookinFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="591.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.Booking.UserBookinFormController">
+   <children>
+      <Label layoutX="158.0" layoutY="31.0" text="Available Books">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="121.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asets/AvailableBook.gif" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblBookinView" layoutX="36.0" layoutY="82.0" prefHeight="277.0" prefWidth="1027.0">
+        <columns>
+          <TableColumn fx:id="colBookingId" prefWidth="120.0" text="Book Id" />
+          <TableColumn fx:id="colBookingcolTitle" prefWidth="178.0" text="Book Title" />
+            <TableColumn fx:id="colBookingAuthour" prefWidth="202.0" text="Authour" />
+            <TableColumn fx:id="colBookingCatougery" prefWidth="158.0" text="Catougery" />
+            <TableColumn fx:id="colBookinStatus" prefWidth="213.0" text="Status" />
+            <TableColumn fx:id="colBookingButton" prefWidth="155.0" text="Booking" />
+        </columns>
+      </TableView>
+      <Label layoutX="121.0" layoutY="376.0" text="Books Available for you to hand over">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="81.0" layoutY="382.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asets/HandOverBook.gif" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tblHandOverBookView" layoutX="39.0" layoutY="412.0" prefHeight="161.0" prefWidth="1027.0">
+        <columns>
+          <TableColumn fx:id="colHandOverId" prefWidth="137.0" text="Book Id" />
+          <TableColumn fx:id="colHandOverTitle" prefWidth="233.0" text="Book Title" />
+            <TableColumn fx:id="colHandOverAutour" prefWidth="212.0" text="Authour" />
+            <TableColumn fx:id="colHandOverBookingDate" prefWidth="174.0" text="Bookin Date" />
+            <TableColumn fx:id="colHandOverOverDate" prefWidth="143.0" text="Hand Over Date" />
+            <TableColumn fx:id="colHandOverButton" prefWidth="126.0" text="Hand Over" />
+        </columns>
+      </TableView>
+   </children>
 </AnchorPane>
