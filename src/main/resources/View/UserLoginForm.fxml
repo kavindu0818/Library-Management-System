@@ -1,13 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.UserLogin.UserLoginFormControler">
    <children>
-      <AnchorPane fx:id="ancloginFormSet" layoutX="331.0" layoutY="85.0" prefHeight="271.0" prefWidth="242.0" style="-fx-background-color: #b4cbd4;" />
-      <JFXButton layoutX="388.0" layoutY="30.0" onAction="#btnLoginFormSetOnAction" prefHeight="25.0" prefWidth="80.0" text="Log In" />
-      <JFXButton layoutX="484.0" layoutY="30.0" onAction="#btnUserRegistrationOnAction" prefHeight="25.0" prefWidth="80.0" text="Registration" />
+      <JFXButton layoutX="453.0" layoutY="38.0" onAction="#btnUserRegistrationOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #c5cade;" text="Registration">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></JFXButton>
+      <ImageView fitHeight="374.0" fitWidth="497.0" layoutX="-60.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asets/LoginImage.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="ancloginFormSet" layoutX="335.0" layoutY="79.0" prefHeight="271.0" prefWidth="242.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="217.0" fitWidth="220.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Asets/AvailableBook.gif" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <JFXButton layoutX="348.0" layoutY="39.0" onAction="#btnLoginFormSetOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #1e2245;" text="Log In" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>
