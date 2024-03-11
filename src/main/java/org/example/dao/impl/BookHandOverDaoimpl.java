@@ -36,4 +36,19 @@ public class BookHandOverDaoimpl {
         session.close();
         return resultList;
     }
+
+    public boolean delete(String bookId) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        BookHandOver bookToDelete = session.get(BookHandOver.class, bookId);
+
+
+        session.delete(bookToDelete);
+
+        transaction.commit();
+        session.close();
+
+        return true;
+    }
 }

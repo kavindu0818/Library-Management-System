@@ -14,7 +14,6 @@ import org.example.Controller.UserLogin.UserLogInSecoundFormController;
 import org.example.Entity.User;
 import org.example.Tm.BookHandOverTm;
 import org.example.Tm.BookingTm;
-import org.example.Tm.BooksTm;
 import org.example.bo.impl.BookBoimpl;
 import org.example.bo.impl.BookHandOverimpl;
 import org.example.bo.impl.UserBoimpl;
@@ -26,6 +25,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class UserBookinFormController {
 
@@ -153,35 +153,44 @@ public class UserBookinFormController {
 
     private void handleButtonClickBook(BookHandOverDto bookHandOverDto, ObservableList<BookHandOverTm> oblist1) {
         oblist1.removeIf(bookHandOverTm -> bookHandOverTm.getId() == bookHandOverDto.getId());
+
+        String bookId = bookHandOverDto.getId();
+
+        boolean isDelete = bookHandOverimpl.deleteBooking(bookId);
+
     }
 
     private void handleButtonClick(BookDto bookDto, ObservableList<BookingTm> oblist) {
 
         oblist.removeIf(bookingTm -> bookingTm.getId() == bookDto.getId());
 
-        String bookingDate = null;
+//        AtomicReference<String> bookingDate = null;
+//
+//        Timeline time = new Timeline(
+//                new KeyFrame(Duration.ZERO, e -> {
+//                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//                    bookingDate.set(LocalDateTime.now().format(formatter));
+//                    System.out.println("Updated booking date: " + bookingDate);
+//                }),
+//                new KeyFrame(Duration.seconds(1))
+//        );
+//
+//        time.setCycleCount(Animation.INDEFINITE);
+//        time.play();
 
-        Timeline time = new Timeline(
-                new KeyFrame(Duration.ZERO, e -> {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                    bookingDate.repeat(Integer.parseInt(LocalDateTime.now().format(formatter)));
-                }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        time.setCycleCount(Animation.INDEFINITE);
-        time.play();
 
 
       String id = bookDto.getId();
       String title = bookDto.getTitle();
       String author = bookDto.getAuthor();
 
-      String status = bookDto.getStatus();
+      String bookDate = "2024-04-06";
+      String hanDate ="2024-03-31";
 
         UserDto userDto = userBoimpl.getUser(userId);
         User user = new User(userDto.getPhoneNumber(),userDto.getFullName(),userDto.getUserName(),userDto.getPassword(),userDto.getGmail());
 
-      var booking = new BookHandOverDto(id,title,author,bookingDate,status,user.getPhoneNumber());
+      var booking = new BookHandOverDto(id,title,author, bookDate,hanDate,user.getPhoneNumber());
 
       boolean isSave = bookHandOverimpl.BookingHandSave(booking,user);
 

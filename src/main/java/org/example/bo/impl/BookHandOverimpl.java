@@ -18,8 +18,6 @@ public class BookHandOverimpl {
 
         public boolean BookingHandSave(BookHandOverDto booking, User user) {
 
-            System.out.println(booking.getId() + " " + booking.getTitle() + " " + booking.getAutour() + " " + booking.getAutour()+ "" + user.getPhoneNumber());
-
             BookHandOver bookHandOver = new BookHandOver(booking.getId(), booking.getTitle(), booking.getAutour(), booking.getBookingDate(), booking.getHandOverDate(), user);
             boolean isSave = bookHandOverDaoimpl.save(bookHandOver);
             return isSave;
@@ -44,6 +42,11 @@ public class BookHandOverimpl {
             }
 
             return bookHandOverDtos;
+    }
+
+    public boolean deleteBooking(String bookId) {
+            boolean isDelete = bookHandOverDaoimpl.delete(bookId);
+            return isDelete;
     }
 }
 
