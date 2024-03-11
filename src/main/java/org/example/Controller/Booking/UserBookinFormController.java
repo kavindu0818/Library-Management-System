@@ -1,11 +1,15 @@
 package org.example.Controller.Booking;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Duration;
 import org.example.Controller.UserLogin.UserLogInSecoundFormController;
 import org.example.Entity.User;
 import org.example.Tm.BookHandOverTm;
@@ -18,6 +22,9 @@ import org.example.dto.BookDto;
 import org.example.dto.BookHandOverDto;
 import org.example.dto.UserDto;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserBookinFormController {
@@ -113,6 +120,7 @@ public class UserBookinFormController {
                     oblist.add(new BookingTm(bookDto.getId(),bookDto.getTitle(),bookDto.getAuthor(),bookDto.getCatougery(),bookDto.getStatus(),button));
                 }
 
+                deleteTableValue();
                 tblBookinView.setItems(oblist);
 
             } else {
@@ -124,6 +132,25 @@ public class UserBookinFormController {
         }
     }
 
+    private void deleteTableValue() {
+        List<BookingTm> itemsToRemove = new ArrayList<>();
+
+        for (BookingTm bookingTm : oblist) {
+            String id = bookingTm.getId();
+
+            for (BookHandOverTm bookHandOverTm : oblist1) {
+                String bookId = bookHandOverTm.getId();
+
+                if (bookId.equals(id)) {
+                    itemsToRemove.add(bookingTm);
+                }
+            }
+        }
+
+        // Remove the identified items from oblist1
+        oblist.removeAll(itemsToRemove);
+    }
+
     private void handleButtonClickBook(BookHandOverDto bookHandOverDto, ObservableList<BookHandOverTm> oblist1) {
         oblist1.removeIf(bookHandOverTm -> bookHandOverTm.getId() == bookHandOverDto.getId());
     }
@@ -132,16 +159,29 @@ public class UserBookinFormController {
 
         oblist.removeIf(bookingTm -> bookingTm.getId() == bookDto.getId());
 
+        String bookingDate = null;
+
+        Timeline time = new Timeline(
+                new KeyFrame(Duration.ZERO, e -> {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    bookingDate.repeat(Integer.parseInt(LocalDateTime.now().format(formatter)));
+                }),
+                new KeyFrame(Duration.seconds(1))
+        );
+        time.setCycleCount(Animation.INDEFINITE);
+        time.play();
+
+
       String id = bookDto.getId();
       String title = bookDto.getTitle();
       String author = bookDto.getAuthor();
-      String catougery = bookDto.getCatougery();
+
       String status = bookDto.getStatus();
 
         UserDto userDto = userBoimpl.getUser(userId);
         User user = new User(userDto.getPhoneNumber(),userDto.getFullName(),userDto.getUserName(),userDto.getPassword(),userDto.getGmail());
 
-      var booking = new BookHandOverDto(id,title,author,catougery,status,user.getPhoneNumber());
+      var booking = new BookHandOverDto(id,title,author,bookingDate,status,user.getPhoneNumber());
 
       boolean isSave = bookHandOverimpl.BookingHandSave(booking,user);
 
