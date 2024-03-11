@@ -12,8 +12,10 @@ import org.example.Tm.BookingTm;
 import org.example.Tm.BooksTm;
 import org.example.bo.impl.BookBoimpl;
 import org.example.bo.impl.BookHandOverimpl;
+import org.example.bo.impl.UserBoimpl;
 import org.example.dto.BookDto;
 import org.example.dto.BookHandOverDto;
+import org.example.dto.UserDto;
 
 import java.util.List;
 
@@ -38,8 +40,11 @@ public class UserBookinFormController {
     BookBoimpl bookBoimpl = new BookBoimpl();
     UserLogInSecoundFormController userLogInSecoundFormController = new UserLogInSecoundFormController();
     BookHandOverimpl bookHandOverimpl = new BookHandOverimpl();
+    UserBoimpl userBoimpl = new UserBoimpl();
 
     int userId = userLogInSecoundFormController.sendId();
+    ObservableList<BookingTm> oblist = FXCollections.observableArrayList();
+
 
 
     public void initialize(){
@@ -58,7 +63,8 @@ public class UserBookinFormController {
     }
 
     private void loadAllBooks() {
-        ObservableList<BookingTm> oblist = FXCollections.observableArrayList();
+
+        List<BookHandOverDto> bookHandOverDtos = bookHandOverimpl.getAllHandOverBook();
 
         try {
             List<BookDto> bookDtoList = bookBoimpl.getAllBooks();
@@ -97,13 +103,13 @@ public class UserBookinFormController {
       String catougery = bookDto.getCatougery();
       String status = bookDto.getStatus();
 
-        User user = new User();
-        user.setPhoneNumber(userId);
+        System.out.println(userId + "12345678");
+        UserDto userDto = userBoimpl.getUser(userId);
+        User user = new User(userDto.getPhoneNumber(),userDto.getFullName(),userDto.getUserName(),userDto.getPassword(),userDto.getGmail());
 
-      var booking = new BookHandOverDto(id,title,author,catougery,status,userId);
+      var booking = new BookHandOverDto(id,title,author,catougery,status,user.getPhoneNumber());
 
-
-      boolean isSave = bookHandOverimpl.BookingHandSave(booking);
+      boolean isSave = bookHandOverimpl.BookingHandSave(booking,user);
 
 
         System.out.println( "me ena badu "+id+" "+title + " ");

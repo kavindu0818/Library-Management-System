@@ -26,4 +26,12 @@ public class UserBoimpl {
         }
         return userList;
     }
+
+    public UserDto getUser(int id) {
+
+        User user = userDaoimpl.getUser(id);
+        UserDto userDto = new UserDto(user.getPhoneNumber(),user.getFullName(),user.getUserName(),user.getPassword(),user.getGmail());
+
+      return userDto;
+    }
 }

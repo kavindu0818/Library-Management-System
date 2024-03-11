@@ -21,7 +21,7 @@ public class UserLogInSecoundFormController {
 
     String userName;
     String pas;
-    public static String id;
+    public static String id = "774257738";
 
     public static int sendId(){
         return Integer.parseInt(id);

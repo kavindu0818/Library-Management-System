@@ -36,4 +36,33 @@ public class UserDaoimpl {
         session.close();
         return resultList;
     }
+
+    public User getUser(int id) {
+//        int primryId = Integer.parseInt(id);
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            Query query = session.createQuery("FROM User WHERE phoneNumber = :phoneNumber", User.class);
+            query.setParameter("phoneNumber", id);
+
+            User user = (User) query.uniqueResult();
+
+            transaction.commit();
+            return user;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle or log the exception appropriately
+        } finally {
+            session.close();
+        }
+
+        return null;
+    }
+
+
+
 }
