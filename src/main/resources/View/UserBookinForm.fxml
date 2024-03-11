@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="591.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.Booking.UserBookinFormController">
    <children>
       <Label layoutX="158.0" layoutY="31.0" text="Available Books">
@@ -21,7 +20,7 @@
             <Image url="@../Asets/AvailableBook.gif" />
          </image>
       </ImageView>
-      <TableView fx:id="tblBookinView" layoutX="36.0" layoutY="82.0" prefHeight="277.0" prefWidth="1027.0">
+      <TableView fx:id="tblBookinView" layoutX="36.0" layoutY="82.0" prefHeight="277.0" prefWidth="1027.0" stylesheets="@../Css/Table.css">
         <columns>
           <TableColumn fx:id="colBookingId" prefWidth="120.0" text="Book Id" />
           <TableColumn fx:id="colBookingcolTitle" prefWidth="178.0" text="Book Title" />
@@ -41,7 +40,7 @@
             <Image url="@../Asets/HandOverBook.gif" />
          </image>
       </ImageView>
-      <TableView fx:id="tblHandOverBookView" layoutX="39.0" layoutY="412.0" prefHeight="161.0" prefWidth="1027.0">
+      <TableView fx:id="tblHandOverBookView" layoutX="39.0" layoutY="412.0" prefHeight="161.0" prefWidth="1027.0" stylesheets="@../Css/Table.css">
         <columns>
           <TableColumn fx:id="colHandOverId" prefWidth="137.0" text="Book Id" />
           <TableColumn fx:id="colHandOverTitle" prefWidth="233.0" text="Book Title" />

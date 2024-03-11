@@ -21,6 +21,18 @@ public class AdminDashboardForm {
 
     }
 
-    public void btnDashBoardOnAction(ActionEvent actionEvent) {
+    public void btnDashBoardOnAction(ActionEvent actionEvent) throws IOException {
+        AncMain.getChildren().clear();
+        AncMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/AdminDashboardMainForm.fxml")));
+
+    }
+
+    public void btnBorrowingOnAction(ActionEvent actionEvent) throws IOException {
+        AncMain.getChildren().clear();
+        AncMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/BorrowingHistoryFrom.fxml")));
+
+    }
+
+    public void btnUserAddOnAction(ActionEvent actionEvent) {
     }
 }
