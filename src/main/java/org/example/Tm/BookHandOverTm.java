@@ -7,19 +7,19 @@ public class BookHandOverTm {
     private String id;
     private String title;
     private String autour;
-    private String cat;
-    private String status;
+    private String bookingDate;
+    private String HandOverdate;
     private Button button;
 
     public BookHandOverTm() {
     }
 
-    public BookHandOverTm(String id, String title, String autour, String cat, String status, Button button) {
+    public BookHandOverTm(String id, String title, String autour, String bookingDate, String handOverdate, Button button) {
         this.id = id;
         this.title = title;
         this.autour = autour;
-        this.cat = cat;
-        this.status = status;
+        this.bookingDate = bookingDate;
+        HandOverdate = handOverdate;
         this.button = button;
     }
 
@@ -47,20 +47,20 @@ public class BookHandOverTm {
         this.autour = autour;
     }
 
-    public String getCat() {
-        return cat;
+    public String getBookingDate() {
+        return bookingDate;
     }
 
-    public void setCat(String cat) {
-        this.cat = cat;
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
-    public String getStatus() {
-        return status;
+    public String getHandOverdate() {
+        return HandOverdate;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setHandOverdate(String handOverdate) {
+        HandOverdate = handOverdate;
     }
 
     public Button getButton() {
@@ -77,8 +77,8 @@ public class BookHandOverTm {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", autour='" + autour + '\'' +
-                ", cat='" + cat + '\'' +
-                ", status='" + status + '\'' +
+                ", bookingDate='" + bookingDate + '\'' +
+                ", HandOverdate='" + HandOverdate + '\'' +
                 ", button=" + button +
                 '}';
     }

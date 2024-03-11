@@ -6,19 +6,18 @@ public class BookHandOverDto {
     private String id;
     private String title;
     private String autour;
-    private String catougery;
-    private String status;
+    private String bookingDate;
+    private String handOverDate;
     private int cusID;
-
     public BookHandOverDto() {
     }
 
-    public BookHandOverDto(String id, String title, String autour, String catougery, String status, int cusID) {
+    public BookHandOverDto(String id, String title, String autour, String bookingDate, String handOverDate, int cusID) {
         this.id = id;
         this.title = title;
         this.autour = autour;
-        this.catougery = catougery;
-        this.status = status;
+        this.bookingDate = bookingDate;
+        this.handOverDate = handOverDate;
         this.cusID = cusID;
     }
 
@@ -46,20 +45,20 @@ public class BookHandOverDto {
         this.autour = autour;
     }
 
-    public String getCatougery() {
-        return catougery;
+    public String getBookingDate() {
+        return bookingDate;
     }
 
-    public void setCatougery(String catougery) {
-        this.catougery = catougery;
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
-    public String getStatus() {
-        return status;
+    public String getHandOverDate() {
+        return handOverDate;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setHandOverDate(String handOverDate) {
+        this.handOverDate = handOverDate;
     }
 
     public int getCusID() {
@@ -76,8 +75,8 @@ public class BookHandOverDto {
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", autour='" + autour + '\'' +
-                ", catougery='" + catougery + '\'' +
-                ", status='" + status + '\'' +
+                ", bookingDate='" + bookingDate + '\'' +
+                ", handOverDate='" + handOverDate + '\'' +
                 ", cusID=" + cusID +
                 '}';
     }

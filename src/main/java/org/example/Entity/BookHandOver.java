@@ -12,8 +12,8 @@ public class BookHandOver {
     private String id;
     private String title;
     private String autour;
-    private String catougery;
-    private String status;
+    private String bookingDate;
+    private String HandOverDate;
 
 
   @ManyToOne
@@ -24,12 +24,12 @@ public class BookHandOver {
 
     }
 
-    public BookHandOver(String id, String title, String autour, String catougery, String status, User cusID) {
+    public BookHandOver(String id, String title, String autour, String bookingDate, String handOverDate, User cusID) {
         this.id = id;
         this.title = title;
         this.autour = autour;
-        this.catougery = catougery;
-        this.status = status;
+        this.bookingDate = bookingDate;
+        HandOverDate = handOverDate;
         this.cusID = cusID;
     }
 
@@ -57,20 +57,20 @@ public class BookHandOver {
         this.autour = autour;
     }
 
-    public String getCatougery() {
-        return catougery;
+    public String getBookingDate() {
+        return bookingDate;
     }
 
-    public void setCatougery(String catougery) {
-        this.catougery = catougery;
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
-    public String getStatus() {
-        return status;
+    public String getHandOverDate() {
+        return HandOverDate;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setHandOverDate(String handOverDate) {
+        HandOverDate = handOverDate;
     }
 
     public User getCusID() {

@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.Controller.UserLogin.UserLogInSecoundFormController;
 import org.example.Entity.User;
+import org.example.Tm.BookHandOverTm;
 import org.example.Tm.BookingTm;
 import org.example.Tm.BooksTm;
 import org.example.bo.impl.BookBoimpl;
@@ -44,12 +45,14 @@ public class UserBookinFormController {
 
     int userId = userLogInSecoundFormController.sendId();
     ObservableList<BookingTm> oblist = FXCollections.observableArrayList();
+    ObservableList<BookHandOverTm> oblist1 = FXCollections.observableArrayList();
 
 
 
     public void initialize(){
       loadAllBooks();
       setCellValueFactory();
+        setCellValueFactoryBookHandOver();
   }
 
     private void setCellValueFactory() {
@@ -62,9 +65,39 @@ public class UserBookinFormController {
 
     }
 
+    private void setCellValueFactoryBookHandOver() {
+        colHandOverId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colHandOverTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colHandOverAutour.setCellValueFactory(new PropertyValueFactory<>("autour"));
+        colHandOverBookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
+        colHandOverOverDate.setCellValueFactory(new PropertyValueFactory<>("HandOverdate"));
+        colHandOverButton.setCellValueFactory(new PropertyValueFactory<>("button"));
+
+    }
+
     private void loadAllBooks() {
 
         List<BookHandOverDto> bookHandOverDtos = bookHandOverimpl.getAllHandOverBook();
+
+        try {
+            if (bookHandOverDtos != null) {
+
+                for (BookHandOverDto bookHandOverDto : bookHandOverDtos) {
+                    Button button = new Button("Button");
+                    button.setOnAction(event -> handleButtonClickBook(bookHandOverDto, oblist1));
+
+                    oblist1.add(new BookHandOverTm(bookHandOverDto.getId(),bookHandOverDto.getTitle(),bookHandOverDto.getAutour(),bookHandOverDto.getBookingDate(),bookHandOverDto.getHandOverDate(),button));
+                }
+
+                tblHandOverBookView.setItems(oblist1);
+
+            } else {
+                System.out.println("The list of books is null.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
 
         try {
             List<BookDto> bookDtoList = bookBoimpl.getAllBooks();
@@ -91,9 +124,11 @@ public class UserBookinFormController {
         }
     }
 
-    private void handleButtonClick(BookDto bookDto, ObservableList<BookingTm> oblist) {
+    private void handleButtonClickBook(BookHandOverDto bookHandOverDto, ObservableList<BookHandOverTm> oblist1) {
+        oblist1.removeIf(bookHandOverTm -> bookHandOverTm.getId() == bookHandOverDto.getId());
+    }
 
-        System.out.println("Button clicked for book: " + bookDto.getTitle());
+    private void handleButtonClick(BookDto bookDto, ObservableList<BookingTm> oblist) {
 
         oblist.removeIf(bookingTm -> bookingTm.getId() == bookDto.getId());
 
@@ -103,19 +138,12 @@ public class UserBookinFormController {
       String catougery = bookDto.getCatougery();
       String status = bookDto.getStatus();
 
-        System.out.println(userId + "12345678");
         UserDto userDto = userBoimpl.getUser(userId);
         User user = new User(userDto.getPhoneNumber(),userDto.getFullName(),userDto.getUserName(),userDto.getPassword(),userDto.getGmail());
 
       var booking = new BookHandOverDto(id,title,author,catougery,status,user.getPhoneNumber());
 
       boolean isSave = bookHandOverimpl.BookingHandSave(booking,user);
-
-
-        System.out.println( "me ena badu "+id+" "+title + " ");
-
-
-
 
         tblBookinView.setItems(oblist);
     }

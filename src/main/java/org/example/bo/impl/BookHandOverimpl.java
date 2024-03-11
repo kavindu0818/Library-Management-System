@@ -20,7 +20,7 @@ public class BookHandOverimpl {
 
             System.out.println(booking.getId() + " " + booking.getTitle() + " " + booking.getAutour() + " " + booking.getAutour()+ "" + user.getPhoneNumber());
 
-            BookHandOver bookHandOver = new BookHandOver(booking.getId(), booking.getTitle(), booking.getAutour(), booking.getCatougery(), booking.getStatus(), user);
+            BookHandOver bookHandOver = new BookHandOver(booking.getId(), booking.getTitle(), booking.getAutour(), booking.getBookingDate(), booking.getHandOverDate(), user);
             boolean isSave = bookHandOverDaoimpl.save(bookHandOver);
             return isSave;
         }
@@ -40,8 +40,10 @@ public class BookHandOverimpl {
             List<BookHandOverDto> bookHandOverDtos = new ArrayList<>();
 
             for (BookHandOver bookHandOver : bookHandOvers){
-                bookHandOverDtos.add(new BookHandOverDto(bookHandOver.getId(),bookHandOver.getTitle(),bookHandOver.getAutour(),bookHandOver.getCatougery(),bookHandOver.getStatus(),bookHandOver.getCusID().getPhoneNumber()));
+                bookHandOverDtos.add(new BookHandOverDto(bookHandOver.getId(),bookHandOver.getTitle(),bookHandOver.getAutour(),bookHandOver.getBookingDate(),bookHandOver.getHandOverDate(),bookHandOver.getCusID().getPhoneNumber()));
             }
+
+            return bookHandOverDtos;
     }
 }
 
