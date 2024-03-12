@@ -3,6 +3,7 @@ package org.example.dao.impl;
 import org.example.Entity.Book;
 import org.example.Entity.User;
 import org.example.configaration.FactoryConfiguration;
+import org.example.dto.UserDto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -64,5 +65,56 @@ public class UserDaoimpl {
     }
 
 
+    public boolean update(User user) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
 
+        session.update(user);
+
+        transaction.commit();
+        session.close();
+
+        return true;
+    }
+
+    public boolean delete(int phone) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        User userToDelete = session.get(User.class, phone);
+
+
+        session.delete(userToDelete);
+
+        transaction.commit();
+        session.close();
+
+        return true;
+    }
+
+    public List<User> getAllSearchUserDetails(int phoneNumber) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<User> query = session.createQuery("FROM User WHERE phoneNumber = :phoneNumber", User.class);
+        query.setParameter("phoneNumber", phoneNumber);
+
+        List<User> resultList = query.getResultList();
+
+        transaction.commit();
+        session.close();
+        return resultList;
+    }
+
+    public List<User> getAllSearchUserDetailsAll() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<User> query = session.createQuery("FROM User ", User.class);
+        List<User>  resultList = query.getResultList();
+
+        transaction.commit();
+        session.close();
+        return resultList;
+    }
 }

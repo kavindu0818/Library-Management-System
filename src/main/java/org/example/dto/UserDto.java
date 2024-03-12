@@ -6,7 +6,6 @@ import jakarta.persistence.Id;
 
 public class UserDto {
 
-
     private int phoneNumber;
     private String fullName;
     private String userName;

@@ -1,7 +1,9 @@
 package org.example.bo.impl;
 
+import org.example.Entity.Book;
 import org.example.Entity.User;
 import org.example.dao.impl.UserDaoimpl;
+import org.example.dto.BookDto;
 import org.example.dto.UserDto;
 
 import java.util.ArrayList;
@@ -33,5 +35,40 @@ public class UserBoimpl {
         UserDto userDto = new UserDto(user.getPhoneNumber(),user.getFullName(),user.getUserName(),user.getPassword(),user.getGmail());
 
       return userDto;
+    }
+
+    public boolean userUpdate(UserDto user) {
+        User userDto = new User(user.getPhoneNumber(),user.getFullName(),user.getUserName(),user.getPassword(),user.getGmail());
+        boolean isUpdte = userDaoimpl.update(userDto);
+        return isUpdte;
+    }
+
+    public boolean userDelete(int phone) {
+        boolean isDelete = userDaoimpl.delete(phone);
+        return isDelete;
+    }
+
+    public List<UserDto> getSearchUser(int user) {
+        List<UserDto> userDtos = new ArrayList<>();
+        List<User> users = userDaoimpl.getAllSearchUserDetails(user);
+
+
+        for (User user1 : users) {
+            userDtos.add(new UserDto(user1.getPhoneNumber(),user1.getFullName(),user1.getUserName(),user1.getPassword(),user1.getGmail()));
+        }
+
+        return userDtos;
+    }
+
+    public List<UserDto> getAllUserAll() {
+        List<UserDto> userDtos = new ArrayList<>();
+        List<User> users = userDaoimpl.getAllSearchUserDetailsAll();
+
+
+        for (User user1 : users) {
+            userDtos.add(new UserDto(user1.getPhoneNumber(),user1.getFullName(),user1.getUserName(),user1.getPassword(),user1.getGmail()));
+        }
+
+        return userDtos;
     }
 }

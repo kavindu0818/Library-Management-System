@@ -17,7 +17,7 @@
       <AnchorPane layoutX="592.0" layoutY="40.0" prefHeight="361.0" prefWidth="466.0" style="-fx-background-color: #c8d0e6; -fx-background-radius: 20;">
          <children>
             <TextField fx:id="txtSearchUser" layoutX="30.0" layoutY="67.0" prefHeight="25.0" prefWidth="212.0" promptText="Enter User Phone Number" style="-fx-background-radius: 10;" />
-            <Button fx:id="btnUserSearchOnAction" layoutX="246.0" layoutY="67.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" style="-fx-background-radius: 10;" text="Search" />
+            <Button fx:id="btnUserSearchOnAction" layoutX="246.0" layoutY="67.0" mnemonicParsing="false" onAction="#btnUserSearcOnAction" prefHeight="25.0" prefWidth="62.0" style="-fx-background-radius: 10;" text="Search" />
             <Label layoutX="27.0" layoutY="127.0" text="Full Name:">
                <font>
                   <Font name="System Bold" size="13.0" />
