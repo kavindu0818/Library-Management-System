@@ -33,6 +33,9 @@ public class AdminDashboardForm {
 
     }
 
-    public void btnUserAddOnAction(ActionEvent actionEvent) {
+    public void btnUserAddOnAction(ActionEvent actionEvent) throws IOException {
+        AncMain.getChildren().clear();
+        AncMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/AddminAddUserForm.fxml")));
+
     }
 }
