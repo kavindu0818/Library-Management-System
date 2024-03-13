@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,7 +9,7 @@
 
 <AnchorPane prefHeight="568.0" prefWidth="1083.0" style="-fx-background-radius: 0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminDashboardMainFormController">
    <children>
-      <AnchorPane layoutX="61.0" layoutY="67.0" prefHeight="112.0" prefWidth="280.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane layoutX="326.0" layoutY="137.0" prefHeight="105.0" prefWidth="255.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="45.0" layoutY="60.0" text="BOOKS">
                <font>
@@ -27,7 +28,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="401.0" layoutY="67.0" prefHeight="112.0" prefWidth="280.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane layoutX="606.0" layoutY="137.0" prefHeight="105.0" prefWidth="255.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="45.0" layoutY="64.0" text="USERS">
                <font>
@@ -46,9 +47,9 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="748.0" layoutY="70.0" prefHeight="112.0" prefWidth="280.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane layoutX="42.0" layoutY="137.0" prefHeight="105.0" prefWidth="255.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
-            <Label layoutX="47.0" layoutY="64.0" text="Branchs">
+            <Label layoutX="46.0" layoutY="66.0" text="BRANCHS">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
@@ -65,7 +66,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="86.0" layoutY="256.0" prefHeight="290.0" prefWidth="270.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="43.0" layoutY="266.0" prefHeight="250.0" prefWidth="270.0" style="-fx-background-color: white; -fx-background-radius: 20;">
          <children>
             <Label layoutX="75.0" layoutY="39.0" text="BOOKING">
                <font>
@@ -79,5 +80,20 @@
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane layoutX="51.0" layoutY="16.0" prefHeight="99.0" prefWidth="806.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+         <children>
+            <Label layoutX="55.0" layoutY="21.0" text="Welcome Back ">
+               <font>
+                  <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
+            <Label layoutX="385.0" layoutY="20.0" text="Kavindu! ">
+               <font>
+                  <Font name="Bauhaus 93" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Separator layoutX="885.0" layoutY="31.0" orientation="VERTICAL" prefHeight="509.0" prefWidth="0.0" />
    </children>
 </AnchorPane>

@@ -4,11 +4,14 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.Tm.BooksTm;
 import org.example.Tm.BranchTm;
 import org.example.bo.impl.BranchBoimpl;
 import org.example.dto.BranchDto;
@@ -37,11 +40,13 @@ public class BranchesForm {
     public JFXComboBox cmbBranchNow;
 
     BranchBoimpl branchBoimpl = new BranchBoimpl();
+    ObservableList<BranchTm> oblist = FXCollections.observableArrayList();
 
     public void initialize(){
         loardBranchDetails();
         setCellValueFactory();
         setValueCmb();
+        searchTable();
 
     }
 
@@ -63,8 +68,33 @@ public class BranchesForm {
 
     }
 
+    public void searchTable(){
+        FilteredList<BranchTm> filteredData = new FilteredList<>(oblist, b -> true);
+
+        txtSeaarchBranch.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(booksTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String bookId = String.valueOf(booksTm.getId());
+                String title = booksTm.getName().toLowerCase();
+                String genre = booksTm.getLoc().toLowerCase();
+
+                return bookId.contains(lowerCaseFilter) || title.contains(lowerCaseFilter) || genre.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<BranchTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblBranchdetails.comparatorProperty());
+        tblBranchdetails.setItems(sortedData);
+
+    }
+
+
     private void loardBranchDetails() {
-        ObservableList<BranchTm> oblist = FXCollections.observableArrayList();
+
 
         try {
             List<BranchDto> branchDtoList = branchBoimpl.getAllBranches();

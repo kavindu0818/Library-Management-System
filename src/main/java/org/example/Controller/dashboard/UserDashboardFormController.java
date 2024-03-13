@@ -24,6 +24,9 @@ public class UserDashboardFormController {
 
     }
 
-    public void btnAllBookDetailsOnAction(ActionEvent actionEvent) {
+    public void btnAllBookDetailsOnAction(ActionEvent actionEvent) throws IOException {
+        ancMain.getChildren().clear();
+        ancMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/ViewBookDetailsUser.fxml")));
+
     }
 }

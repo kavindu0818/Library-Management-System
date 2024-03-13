@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -37,12 +39,14 @@ public class BookForm {
     public JFXComboBox cmbBookCatougery;
 
     BookBoimpl bookBoimpl = new BookBoimpl();
+    ObservableList<BooksTm> oblist = FXCollections.observableArrayList();
 
 
     public void initialize() {
         setCellValueFactory();
         loadAllBooks();
         setValueCmb();
+        searchTable();
     }
 
     private void setValueCmb() {
@@ -51,6 +55,30 @@ public class BookForm {
         ObservableList<String> catogery = FXCollections.observableArrayList("Kids","Education");
 
         cmbBookCatougery.setItems(catogery);
+    }
+
+    public void searchTable(){
+        FilteredList<BooksTm> filteredData = new FilteredList<>(oblist, b -> true);
+
+        textSeacrhBookTitle.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(booksTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String bookId = String.valueOf(booksTm.getId());
+                String title = booksTm.getTitle().toLowerCase();
+                String genre = booksTm.getAuthor().toLowerCase();
+
+                return bookId.contains(lowerCaseFilter) || title.contains(lowerCaseFilter) || genre.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<BooksTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblbooksView.comparatorProperty());
+        tblbooksView.setItems(sortedData);
+
     }
 
     private void setCellValueFactory() {
@@ -62,7 +90,6 @@ public class BookForm {
     }
 
     private void loadAllBooks() {
-        ObservableList<BooksTm> oblist = FXCollections.observableArrayList();
 
         try {
             List<BookDto> bookDtoList = bookBoimpl.getAllBooks();

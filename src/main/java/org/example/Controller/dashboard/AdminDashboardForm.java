@@ -9,6 +9,16 @@ import java.io.IOException;
 public class AdminDashboardForm {
     public AnchorPane AncMain;
 
+    public void initialize() throws IOException {
+        dashboard();
+    }
+
+    public void dashboard() throws IOException {
+        AncMain.getChildren().clear();
+        AncMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/AdminDashboardMainForm.fxml")));
+
+    }
+
     public void btnBookFormOnAction(ActionEvent actionEvent) throws IOException {
         AncMain.getChildren().clear();
         AncMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/BookForm.fxml")));
@@ -30,7 +40,6 @@ public class AdminDashboardForm {
     public void btnBorrowingOnAction(ActionEvent actionEvent) throws IOException {
         AncMain.getChildren().clear();
         AncMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/BorrowingHistoryFrom.fxml")));
-
     }
 
     public void btnUserAddOnAction(ActionEvent actionEvent) throws IOException {

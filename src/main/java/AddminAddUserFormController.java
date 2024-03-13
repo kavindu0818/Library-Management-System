@@ -1,6 +1,8 @@
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -9,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.Entity.User;
 import org.example.Tm.BooksTm;
+import org.example.Tm.BranchTm;
 import org.example.Tm.UserTm;
 import org.example.bo.impl.UserBoimpl;
 import org.example.dto.BookDto;
@@ -38,11 +41,40 @@ public class AddminAddUserFormController {
     public JFXTextField txtPassword;
 
     UserBoimpl userBoimpl = new UserBoimpl();
+    ObservableList<UserTm> oblist = FXCollections.observableArrayList();
 
     public void initialize(){
         getAll();
         setCellValueFactory();
+        searchTable();
     }
+
+    public void searchTable(){
+        FilteredList<UserTm> filteredData = new FilteredList<>(oblist, b -> true);
+
+        txtSearchUser.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(userTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String bookId = String.valueOf(userTm.getPhone());
+                String title = userTm.getUserName().toLowerCase();
+                String genre = userTm.getPass().toLowerCase();
+
+                return bookId.contains(lowerCaseFilter) || title.contains(lowerCaseFilter) || genre.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<UserTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblUserView.comparatorProperty());
+        tblUserView.setItems(sortedData);
+
+    }
+
+
+
     private void setCellValueFactory() {
         colPhoneNumber.setCellValueFactory(new PropertyValueFactory<>("phone"));
         colFullName.setCellValueFactory(new PropertyValueFactory<>("full"));
@@ -53,7 +85,6 @@ public class AddminAddUserFormController {
     }
 
     private void getAll() {
-        ObservableList<UserTm> oblist = FXCollections.observableArrayList();
 
         try {
             List<UserDto> userDtos = userBoimpl.getAllUserAll();
@@ -106,6 +137,7 @@ public class AddminAddUserFormController {
         var user = new UserDto(phoneNumber,fullName,userName,password,gmail);
 
         boolean isSave = userBoimpl.userSave(user);
+        getAll();
         clearText();
 
     }
