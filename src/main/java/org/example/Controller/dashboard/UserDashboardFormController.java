@@ -18,7 +18,10 @@ public class UserDashboardFormController {
     public void btnHistoryOnAction(ActionEvent actionEvent) {
     }
 
-    public void btnBranchDetailsOnAction(ActionEvent actionEvent) {
+    public void btnBranchDetailsOnAction(ActionEvent actionEvent) throws IOException {
+        ancMain.getChildren().clear();
+        ancMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/UserViewBranchDetails.fxml")));
+
     }
 
     public void btnAllBookDetailsOnAction(ActionEvent actionEvent) {

@@ -12,12 +12,12 @@ public class BranchTm {
     public BranchTm() {
     }
 
-    public BranchTm(String id, String name, String loc, String oT, String cT, String now) {
+    public BranchTm(String id, String name, String loc, String openT, String closeT, String now) {
         this.id = id;
         this.name = name;
         this.loc = loc;
-        this.openT = oT;
-        this.closeT = cT;
+        this.openT = openT;
+        this.closeT = closeT;
         this.now = now;
     }
 
@@ -45,20 +45,20 @@ public class BranchTm {
         this.loc = loc;
     }
 
-    public String getoT() {
+    public String getOpenT() {
         return openT;
     }
 
-    public void setoT(String oT) {
-        this.openT = oT;
+    public void setOpenT(String openT) {
+        this.openT = openT;
     }
 
-    public String getcT() {
+    public String getCloseT() {
         return closeT;
     }
 
-    public void setcT(String cT) {
-        this.closeT = cT;
+    public void setCloseT(String closeT) {
+        this.closeT = closeT;
     }
 
     public String getNow() {
