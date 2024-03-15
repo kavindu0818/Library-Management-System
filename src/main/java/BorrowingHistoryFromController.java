@@ -58,7 +58,6 @@ public class BorrowingHistoryFromController {
                 System.out.println("mama"); // Check if "mama" is printed
 
                 if (historyDtoList != null) {
-                    //  System.out.println("Number of books: " + bookDtoList.size()); // Print the number of books in the list
                     for (HistoryDto historyDto : historyDtoList) {
 //                        String id = historyDto.getCusId();
 //                        int userId = Integer.parseInt(id);
