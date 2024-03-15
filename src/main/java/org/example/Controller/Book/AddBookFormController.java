@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import org.example.bo.BookBo;
+import org.example.bo.Custome.BoFactory;
 import org.example.bo.impl.BookBoimpl;
 import org.example.dto.BookDto;
 
@@ -18,7 +20,9 @@ public class AddBookFormController {
     public JFXComboBox cmbCatougery;
     public TextArea txtStatus;
 
-    BookBoimpl bookBoimpl = new BookBoimpl();
+
+    BookBo  bookBoimpl = (BookBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.BOOK);
+
 
     public void initialize(){
         setValueCmb();

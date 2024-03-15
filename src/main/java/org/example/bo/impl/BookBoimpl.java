@@ -1,6 +1,7 @@
 package org.example.bo.impl;
 
 import org.example.Entity.Book;
+import org.example.bo.BookBo;
 import org.example.dao.impl.BookDaoimpl;
 import org.example.dto.BookDto;
 
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BookBoimpl {
+public class BookBoimpl implements BookBo {
     BookDaoimpl bookDaoimpl = new BookDaoimpl();
     public boolean saveBook(BookDto book) {
         Book book1 = new Book(book.getId(),book.getTitle(),book.getAuthor(),book.getCatougery(),book.getStatus());

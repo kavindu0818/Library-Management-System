@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.bo.Custome.BoFactory;
+import org.example.bo.UserBo;
 import org.example.bo.impl.UserBoimpl;
 import org.example.dto.UserDto;
 
@@ -17,7 +19,8 @@ public class UserLogInSecoundFormController {
     public JFXTextField txtUserName;
     public JFXTextField txtPassword;
 
-    UserBoimpl userBoimpl = new UserBoimpl();
+    UserBo userBoimpl = (UserBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.USER);
+
 
     String userName;
     String pas;

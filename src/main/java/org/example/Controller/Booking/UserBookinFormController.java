@@ -10,6 +10,10 @@ import org.example.Controller.UserLogin.UserLogInSecoundFormController;
 import org.example.Entity.User;
 import org.example.Tm.BookHandOverTm;
 import org.example.Tm.BookingTm;
+import org.example.bo.BookBo;
+import org.example.bo.BookHandOverBo;
+import org.example.bo.Custome.BoFactory;
+import org.example.bo.UserBo;
 import org.example.bo.impl.BookBoimpl;
 import org.example.bo.impl.BookHandOverimpl;
 import org.example.bo.impl.TransactionBussiness;
@@ -39,10 +43,10 @@ public class UserBookinFormController {
     public TableColumn colHandOverButton;
 
 
-    BookBoimpl bookBoimpl = new BookBoimpl();
+    BookBo bookBoimpl = (BookBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.BOOK);
     UserLogInSecoundFormController userLogInSecoundFormController = new UserLogInSecoundFormController();
-    BookHandOverimpl bookHandOverimpl = new BookHandOverimpl();
-    UserBoimpl userBoimpl = new UserBoimpl();
+    BookHandOverBo bookHandOverimpl = (BookHandOverBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.BOOKHANDOVER);
+    UserBo userBoimpl = (UserBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.USER);
 
     public int userId = userLogInSecoundFormController.sendId();
     ObservableList<BookingTm> oblist = FXCollections.observableArrayList();

@@ -2,6 +2,7 @@ package org.example.bo.impl;
 
 import org.example.Entity.History;
 import org.example.Entity.User;
+import org.example.bo.HistoryBo;
 import org.example.dao.impl.HistoryDaoimpl;
 import org.example.dto.HistoryDto;
 import org.example.dto.UserDto;
@@ -9,7 +10,7 @@ import org.example.dto.UserDto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoryBoimpl {
+public class HistoryBoimpl implements HistoryBo {
 
     HistoryDaoimpl historyDaoimpl = new HistoryDaoimpl();
     public List<HistoryDto> getAllHistory() {

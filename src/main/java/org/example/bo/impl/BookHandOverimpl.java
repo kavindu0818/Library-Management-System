@@ -4,13 +4,14 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.example.Entity.BookHandOver;
 import org.example.Entity.User;
+import org.example.bo.BookHandOverBo;
 import org.example.dao.impl.BookHandOverDaoimpl;
 import org.example.dto.BookHandOverDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookHandOverimpl {
+public class BookHandOverimpl implements BookHandOverBo {
         @PersistenceContext
         private EntityManager entityManager;
 
@@ -23,7 +24,7 @@ public class BookHandOverimpl {
             return isSave;
         }
 
-        private User getUserByPhoneNumber(int phoneNumber) {
+        public User getUserByPhoneNumber(int phoneNumber) {
 
                 return entityManager.createQuery("SELECT u FROM User u WHERE u.phoneNumber = :phoneNumber", User.class)
                         .setParameter("phoneNumber", phoneNumber)

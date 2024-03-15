@@ -3,6 +3,8 @@ package org.example.Controller.UserLogin;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
+import org.example.bo.Custome.BoFactory;
+import org.example.bo.UserBo;
 import org.example.bo.impl.UserBoimpl;
 import org.example.dto.UserDto;
 
@@ -15,7 +17,7 @@ public class UserRegistrationFormController {
     public JFXTextField txtPhoneNumber;
     public AnchorPane ancRegistration;
 
-    UserBoimpl userBoimpl = new UserBoimpl();
+    UserBo userBoimpl = (UserBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.USER);
 
     public void btnRegistrationSubmitOnAction(ActionEvent actionEvent) {
         int id = Integer.parseInt(txtPhoneNumber.getText());

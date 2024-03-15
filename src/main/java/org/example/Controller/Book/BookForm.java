@@ -15,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.Tm.BooksTm;
+import org.example.bo.BookBo;
+import org.example.bo.Custome.BoFactory;
 import org.example.bo.impl.BookBoimpl;
 import org.example.dto.BookDto;
 
@@ -38,7 +40,7 @@ public class BookForm {
     public JFXTextField txtBookAutour;
     public JFXComboBox cmbBookCatougery;
 
-    BookBoimpl bookBoimpl = new BookBoimpl();
+    BookBo bookBoimpl = (BookBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.BOOK);
     ObservableList<BooksTm> oblist = FXCollections.observableArrayList();
 
 

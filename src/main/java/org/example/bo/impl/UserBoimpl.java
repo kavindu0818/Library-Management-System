@@ -2,6 +2,7 @@ package org.example.bo.impl;
 
 import org.example.Entity.Book;
 import org.example.Entity.User;
+import org.example.bo.UserBo;
 import org.example.dao.impl.UserDaoimpl;
 import org.example.dto.BookDto;
 import org.example.dto.HistoryDto;
@@ -10,7 +11,7 @@ import org.example.dto.UserDto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserBoimpl {
+public class UserBoimpl implements UserBo {
 
     UserDaoimpl userDaoimpl =new UserDaoimpl();
 

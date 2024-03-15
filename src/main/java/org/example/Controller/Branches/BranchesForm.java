@@ -13,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.Tm.BooksTm;
 import org.example.Tm.BranchTm;
+import org.example.bo.BookHandOverBo;
+import org.example.bo.BranchBo;
+import org.example.bo.Custome.BoFactory;
 import org.example.bo.impl.BranchBoimpl;
 import org.example.dto.BranchDto;
 
@@ -39,7 +42,7 @@ public class BranchesForm {
     public JFXTextField txt2OpenTime;
     public JFXComboBox cmbBranchNow;
 
-    BranchBoimpl branchBoimpl = new BranchBoimpl();
+    BranchBo branchBoimpl = (BranchBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.BRANCH);
     ObservableList<BranchTm> oblist = FXCollections.observableArrayList();
 
     public void initialize(){

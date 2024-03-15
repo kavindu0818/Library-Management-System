@@ -1,13 +1,14 @@
 package org.example.bo.impl;
 
 import org.example.Entity.Branch;
+import org.example.bo.BranchBo;
 import org.example.dao.impl.BranchDaoimpl;
 import org.example.dto.BranchDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BranchBoimpl {
+public class BranchBoimpl implements BranchBo {
 
     BranchDaoimpl branchDaoimpl = new BranchDaoimpl();
     public boolean branchSave(BranchDto branch) {

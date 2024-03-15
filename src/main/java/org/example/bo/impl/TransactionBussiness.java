@@ -6,7 +6,7 @@ import org.example.configaration.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-public class TransactionBussiness {
+public class TransactionBussiness implements org.example.bo.Transaction {
 
     public void sendTransaction(String bookId, String title, String uId, String bookD, String booKH) {
 
@@ -28,7 +28,7 @@ public class TransactionBussiness {
 
     }
 
-    private boolean saveBookingHistory(History history) {
+    public boolean saveBookingHistory(History history) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         session.save(history);
