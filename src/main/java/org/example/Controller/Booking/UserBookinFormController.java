@@ -1,31 +1,25 @@
 package org.example.Controller.Booking;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Duration;
 import org.example.Controller.UserLogin.UserLogInSecoundFormController;
 import org.example.Entity.User;
 import org.example.Tm.BookHandOverTm;
 import org.example.Tm.BookingTm;
 import org.example.bo.impl.BookBoimpl;
 import org.example.bo.impl.BookHandOverimpl;
+import org.example.bo.impl.TransactionBussiness;
 import org.example.bo.impl.UserBoimpl;
 import org.example.dto.BookDto;
 import org.example.dto.BookHandOverDto;
 import org.example.dto.UserDto;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class UserBookinFormController {
 
@@ -50,9 +44,11 @@ public class UserBookinFormController {
     BookHandOverimpl bookHandOverimpl = new BookHandOverimpl();
     UserBoimpl userBoimpl = new UserBoimpl();
 
-    int userId = userLogInSecoundFormController.sendId();
+    public int userId = userLogInSecoundFormController.sendId();
     ObservableList<BookingTm> oblist = FXCollections.observableArrayList();
     ObservableList<BookHandOverTm> oblist1 = FXCollections.observableArrayList();
+
+    TransactionBussiness transaction = new TransactionBussiness();
 
 
 
@@ -155,8 +151,18 @@ public class UserBookinFormController {
         oblist1.removeIf(bookHandOverTm -> bookHandOverTm.getId() == bookHandOverDto.getId());
 
         String bookId = bookHandOverDto.getId();
+        String title = bookHandOverDto.getTitle();
+        int id = userId;
+        String uId = String.valueOf(id);
+        String bookD = bookHandOverDto.getBookingDate();
+        String booKH = bookHandOverDto.getHandOverDate();
 
-        boolean isDelete = bookHandOverimpl.deleteBooking(bookId);
+        transaction.sendTransaction(bookId,title,uId,bookD,booKH);
+
+
+       // boolean isDelete = bookHandOverimpl.deleteBooking(bookId);
+
+
 
     }
 

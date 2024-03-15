@@ -29,4 +29,7 @@ public class UserDashboardFormController {
         ancMain.getChildren().add(FXMLLoader.load(getClass().getResource("/view/ViewBookDetailsUser.fxml")));
 
     }
+
+    public void btnDashBoardOnAction(ActionEvent actionEvent) {
+    }
 }

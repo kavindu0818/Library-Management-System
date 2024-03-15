@@ -24,13 +24,11 @@ public class BookHandOverimpl {
         }
 
         private User getUserByPhoneNumber(int phoneNumber) {
-            try {
+
                 return entityManager.createQuery("SELECT u FROM User u WHERE u.phoneNumber = :phoneNumber", User.class)
                         .setParameter("phoneNumber", phoneNumber)
                         .getSingleResult();
-            } catch (javax.persistence.NoResultException e) {
-                return null;
-            }
+
         }
 
     public List<BookHandOverDto> getAllHandOverBook() {

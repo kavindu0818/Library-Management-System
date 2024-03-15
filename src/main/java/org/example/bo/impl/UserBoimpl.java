@@ -4,6 +4,7 @@ import org.example.Entity.Book;
 import org.example.Entity.User;
 import org.example.dao.impl.UserDaoimpl;
 import org.example.dto.BookDto;
+import org.example.dto.HistoryDto;
 import org.example.dto.UserDto;
 
 import java.util.ArrayList;
@@ -71,4 +72,5 @@ public class UserBoimpl {
 
         return userDtos;
     }
+
 }
