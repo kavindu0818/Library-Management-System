@@ -97,3 +97,14 @@
     -fx-font-weight: bold;
     -fx-text-fill:rgb(0,0,0);
 }
+
+.btn{
+    -fx-background-color: #94383e;
+    -fx-font-style: white;
+}
+
+.btn1{
+    -fx-background-color: #463da6;
+    -fx-font-style: white;
+
+}

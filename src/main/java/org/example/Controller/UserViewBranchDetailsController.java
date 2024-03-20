@@ -1,3 +1,5 @@
+package org.example.Controller;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;

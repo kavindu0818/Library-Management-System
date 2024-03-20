@@ -4,13 +4,14 @@ import org.example.Entity.Book;
 import org.example.Entity.BookHandOver;
 import org.example.Entity.User;
 import org.example.configaration.FactoryConfiguration;
+import org.example.dao.BookHandOverDao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class BookHandOverDaoimpl {
+public class BookHandOverDaoimpl implements BookHandOverDao {
 
     public boolean save(BookHandOver bookHandOver) {
         Session session = FactoryConfiguration.getInstance().getSession();
@@ -30,6 +31,7 @@ public class BookHandOverDaoimpl {
         Transaction transaction = session.beginTransaction();
 
         Query<BookHandOver> query = session.createQuery("FROM BookHandOver ", BookHandOver.class);
+      //  query.setParameter("userid",  + userid );
         List<BookHandOver>  resultList = query.getResultList();
 
         transaction.commit();
@@ -50,5 +52,21 @@ public class BookHandOverDaoimpl {
         session.close();
 
         return true;
+    }
+
+    @Override
+    public int getBookingCount() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Long> countQuery = session.createQuery("SELECT COUNT(*) FROM BookHandOver", Long.class);
+
+        Long bookCount = countQuery.uniqueResult(); // Get the count of books matching the query
+
+        transaction.commit();
+        session.close();
+
+        // Handle null value
+        return bookCount != null ? bookCount.intValue() : 0;
     }
 }

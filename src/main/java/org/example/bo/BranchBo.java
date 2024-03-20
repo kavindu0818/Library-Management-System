@@ -18,4 +18,8 @@ public interface BranchBo extends SuperBo {
     public boolean updateBranch(BranchDto branch);
 
     public boolean deleteBarnch(String id);
+
+    public String getLastBranchId();
+
+    int getBarnchCount();
 }

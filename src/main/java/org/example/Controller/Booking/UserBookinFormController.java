@@ -22,6 +22,7 @@ import org.example.dto.BookDto;
 import org.example.dto.BookHandOverDto;
 import org.example.dto.UserDto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,8 @@ public class UserBookinFormController {
     BookHandOverBo bookHandOverimpl = (BookHandOverBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.BOOKHANDOVER);
     UserBo userBoimpl = (UserBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.USER);
 
-    public int userId = userLogInSecoundFormController.sendId();
+   // UserBoimpl userBoimpl  = new UserBoimpl();
+    public int userId = userLogInSecoundFormController.ph;
     ObservableList<BookingTm> oblist = FXCollections.observableArrayList();
     ObservableList<BookHandOverTm> oblist1 = FXCollections.observableArrayList();
 
@@ -90,11 +92,14 @@ public class UserBookinFormController {
             if (bookHandOverDtos != null) {
 
                 for (BookHandOverDto bookHandOverDto : bookHandOverDtos) {
-                    Button button = new Button("Button");
+                    Button button = new Button("Hand Over");
                     button.setOnAction(event -> handleButtonClickBook(bookHandOverDto, oblist1));
 
                     oblist1.add(new BookHandOverTm(bookHandOverDto.getId(),bookHandOverDto.getTitle(),bookHandOverDto.getAutour(),bookHandOverDto.getBookingDate(),bookHandOverDto.getHandOverDate(),button));
+                    button.getStyleClass().add("btn");
                 }
+
+
 
                 tblHandOverBookView.setItems(oblist1);
 
@@ -114,11 +119,11 @@ public class UserBookinFormController {
             if (bookDtoList != null) {
 
                 for (BookDto bookDto : bookDtoList) {
-                    Button button = new Button("Button");
+                    Button button = new Button("Booking");
                     button.setOnAction(event -> handleButtonClick(bookDto, oblist));
 
                     oblist.add(new BookingTm(bookDto.getId(),bookDto.getTitle(),bookDto.getAuthor(),bookDto.getCatougery(),bookDto.getStatus(),button));
-                }
+                    button.getStyleClass().add("btn1");                }
 
                 deleteTableValue();
                 tblBookinView.setItems(oblist);
@@ -160,51 +165,66 @@ public class UserBookinFormController {
         String uId = String.valueOf(id);
         String bookD = bookHandOverDto.getBookingDate();
         String booKH = bookHandOverDto.getHandOverDate();
+        String bookingId = splitBooksId(transaction.getLastBranchId());
 
-        transaction.sendTransaction(bookId,title,uId,bookD,booKH);
-
-
-       // boolean isDelete = bookHandOverimpl.deleteBooking(bookId);
-
-
+        transaction.sendTransaction(bookId,title,uId,bookD,booKH,bookingId);
 
     }
+    private static String splitBooksId(String currentUserId) {
+        if (currentUserId != null) {
+            String[] split = currentUserId.split("UH00");
 
+            int id = Integer.parseInt(split[1]);
+            id++;
+            if (id < 10) {
+                return "UH00" + id;
+            } else if (id < 100) {
+                return "UH0" + id;
+            } else {
+                return "UH" + id;
+            }
+        } else {
+            return "UH001";
+        }
+    }
     private void handleButtonClick(BookDto bookDto, ObservableList<BookingTm> oblist) {
 
         oblist.removeIf(bookingTm -> bookingTm.getId() == bookDto.getId());
-
-//        AtomicReference<String> bookingDate = null;
-//
-//        Timeline time = new Timeline(
-//                new KeyFrame(Duration.ZERO, e -> {
-//                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//                    bookingDate.set(LocalDateTime.now().format(formatter));
-//                    System.out.println("Updated booking date: " + bookingDate);
-//                }),
-//                new KeyFrame(Duration.seconds(1))
-//        );
-//
-//        time.setCycleCount(Animation.INDEFINITE);
-//        time.play();
-
-
 
       String id = bookDto.getId();
       String title = bookDto.getTitle();
       String author = bookDto.getAuthor();
 
-      String bookDate = "2024-04-06";
-      String hanDate ="2024-03-31";
+        long millis=System.currentTimeMillis();
+        java.sql.Date bo=new java.sql.Date(millis);
+
+        LocalDate currentDate = LocalDate.now();
+        LocalDate futureDate = currentDate.plusDays(14);
+        java.sql.Date returnDate = java.sql.Date.valueOf(futureDate);
+
+
+        String bookDate = String.valueOf(currentDate);
+      String hanDate = String.valueOf(futureDate);
 
         UserDto userDto = userBoimpl.getUser(userId);
+
+        if (userDto != null){
+            System.out.println(userDto.getPhoneNumber() + " " + userDto.getUserName() + " Hey Hey");
+
+        }else {
+            System.out.println("Not Value");
+        }
+
         User user = new User(userDto.getPhoneNumber(),userDto.getFullName(),userDto.getUserName(),userDto.getPassword(),userDto.getGmail());
+
+        System.out.println(userDto.getPhoneNumber() + " " + userDto.getUserName() + " Hey Hey");
 
       var booking = new BookHandOverDto(id,title,author, bookDate,hanDate,user.getPhoneNumber());
 
       boolean isSave = bookHandOverimpl.BookingHandSave(booking,user);
 
         tblBookinView.setItems(oblist);
+
     }
 
 

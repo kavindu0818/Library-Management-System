@@ -51,6 +51,8 @@ public class BookForm {
         searchTable();
     }
 
+
+
     private void setValueCmb() {
         //ComboBox<String> comboBox = new ComboBox<>();
 
@@ -137,6 +139,12 @@ public class BookForm {
 
         boolean isupdate = bookBoimpl.updateBook(book);
 
+        if (isupdate){
+
+            new Alert(Alert.AlertType.INFORMATION,"Update Book").show();
+
+        }
+
         clearField();
 
     }
@@ -145,6 +153,11 @@ public class BookForm {
         String id = lblBookId.getText();
 
         boolean isDelete = bookBoimpl.deleteBook(id);
+
+        if (isDelete){
+            new Alert(Alert.AlertType.INFORMATION,"Delete Book").show();
+
+        }
 
         clearField();
     }

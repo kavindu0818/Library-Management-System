@@ -3,20 +3,23 @@ package org.example.bo.impl;
 import org.example.Entity.BookHandOver;
 import org.example.Entity.History;
 import org.example.configaration.FactoryConfiguration;
+import org.example.dao.Custome.DAOFactory;
+import org.example.dao.impl.HistoryDaoimpl;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class TransactionBussiness implements org.example.bo.Transaction {
 
-    public void sendTransaction(String bookId, String title, String uId, String bookD, String booKH) {
+    org.example.dao.History historyDaoimpl = (org.example.dao.History) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.HISTORY);
+
+    public void sendTransaction(String bookId, String title, String uId, String bookD, String booKH, String bookingId) {
 
         try{
 
            boolean isDelete = deleteBooking(bookId);
 
            if (isDelete){
-               String id = "00001";
-               History history = new History(id,bookId,title,bookD,booKH,uId);
+               History history = new History(bookingId,bookId,title,bookD,booKH,uId);
               boolean isSave = saveBookingHistory(history);
            }else{
                System.out.println("Not Add");
@@ -25,6 +28,11 @@ public class TransactionBussiness implements org.example.bo.Transaction {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    @Override
+    public void sendTransaction(String bookId, String title, String uId, String bookD, String booKH) {
 
     }
 
@@ -52,5 +60,8 @@ public class TransactionBussiness implements org.example.bo.Transaction {
         session.close();
 
         return true;
+    }
+    public String getLastBranchId() {
+        return historyDaoimpl.getLastBookingId();
     }
 }

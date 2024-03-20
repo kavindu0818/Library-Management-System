@@ -11,4 +11,5 @@ public interface Transaction extends SuperBo {
     public void sendTransaction(String bookId, String title, String uId, String bookD, String booKH);
     public boolean saveBookingHistory(History history);
     public boolean deleteBooking(String bookId);
+    public String getLastBranchId();
 }

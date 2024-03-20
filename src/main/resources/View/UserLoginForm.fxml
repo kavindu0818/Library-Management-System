@@ -1,35 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.UserLogin.UserLoginFormControler">
+<AnchorPane prefHeight="400.0" prefWidth="627.0" style="-fx-background-color: #5e637a;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.UserLogin.UserLoginFormControler">
    <children>
-      <JFXButton layoutX="453.0" layoutY="38.0" onAction="#btnUserRegistrationOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #c5cade;" text="Registration">
+      <JFXButton layoutX="497.0" layoutY="38.0" onAction="#btnUserRegistrationOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #5e637a; -fx-background-radius: 10;" text="Registration" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></JFXButton>
-      <ImageView fitHeight="374.0" fitWidth="497.0" layoutX="-60.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Asets/LoginImage.png" />
-         </image>
-      </ImageView>
-      <AnchorPane fx:id="ancloginFormSet" layoutX="335.0" layoutY="79.0" prefHeight="271.0" prefWidth="242.0" style="-fx-background-color: white; -fx-background-radius: 20;">
+      <AnchorPane fx:id="ancloginFormSet" layoutX="379.0" layoutY="79.0" prefHeight="252.0" prefWidth="225.0" style="-fx-background-color: white; -fx-background-radius: 40;">
          <children>
-            <ImageView fitHeight="217.0" fitWidth="220.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="33.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Asets/AvailableBook.gif" />
+                  <Image url="@../Asets/book.png" />
                </image>
             </ImageView>
-         </children>
-      </AnchorPane>
-      <JFXButton layoutX="348.0" layoutY="39.0" onAction="#btnLoginFormSetOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #1e2245;" text="Log In" textFill="WHITE">
+         </children></AnchorPane>
+      <JFXButton layoutX="394.0" layoutY="39.0" onAction="#btnLoginFormSetOnAction" prefHeight="25.0" prefWidth="92.0" style="-fx-background-color: #1e2245; -fx-background-radius: 10;" text="Log In" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="70.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asets/UserLogin2.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="20.0" layoutY="288.0" prefHeight="17.0" prefWidth="338.0" text="User login for library management system provides" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="310.0" prefHeight="17.0" prefWidth="338.0" text="access to search, borrow, and manage personal reading" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="329.0" prefHeight="17.0" prefWidth="338.0" text="history and preferences" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

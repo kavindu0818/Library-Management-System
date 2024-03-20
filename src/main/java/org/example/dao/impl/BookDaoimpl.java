@@ -2,13 +2,14 @@ package org.example.dao.impl;
 
 import org.example.Entity.Book;
 import org.example.configaration.FactoryConfiguration;
+import org.example.dao.BookDao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class BookDaoimpl {
+public class BookDaoimpl implements BookDao {
     public boolean save(Book book1) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -75,4 +76,35 @@ public class BookDaoimpl {
 
         return true;
     }
+
+    public String getLastBookId() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        org.hibernate.Transaction transaction = session.beginTransaction();
+
+        Query<String> query = session.createQuery(
+                "SELECT b.id FROM Book b ORDER BY b.id DESC", String.class
+        );
+        query.setMaxResults(1);
+        String latestBookId = query.uniqueResult();
+        return latestBookId;
+    }
+
+    @Override
+    public int getBookCount() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Long> countQuery = session.createQuery("SELECT COUNT(*) FROM Book", Long.class);
+
+        Long bookCount = countQuery.uniqueResult(); // Get the count of books matching the query
+
+        transaction.commit();
+        session.close();
+
+        // Handle null value
+        return bookCount != null ? bookCount.intValue() : 0;
+    }
+
+
+
 }

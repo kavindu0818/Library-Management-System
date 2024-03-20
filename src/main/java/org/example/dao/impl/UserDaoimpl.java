@@ -1,8 +1,10 @@
 package org.example.dao.impl;
 
+import jakarta.persistence.NoResultException;
 import org.example.Entity.Book;
 import org.example.Entity.User;
 import org.example.configaration.FactoryConfiguration;
+import org.example.dao.UserDao;
 import org.example.dto.UserDto;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,7 +12,7 @@ import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class UserDaoimpl {
+public class UserDaoimpl implements UserDao {
     public boolean save(User user) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
@@ -23,13 +25,14 @@ public class UserDaoimpl {
         return true;
     }
 
-    public List<User> getAll(String pas, String userName) {
+    public List<User> getAll(String pas) {
+
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query<User> query = session.createQuery("FROM User WHERE password LIKE :password AND userName LIKE :userName", User.class);
-        query.setParameter("password", "%" + pas + "%");
-        query.setParameter("userName", "%" + userName + "%");
+        Query<User> query = session.createQuery("FROM User WHERE userName LIKE :pas", User.class);
+        query.setParameter("pas", "%" + pas + "%");
+
 
         List<User> resultList = query.getResultList();
 
@@ -37,6 +40,8 @@ public class UserDaoimpl {
         session.close();
         return resultList;
     }
+
+
 
     public User getUser(int id) {
 //        int primryId = Integer.parseInt(id);
@@ -92,12 +97,13 @@ public class UserDaoimpl {
         return true;
     }
 
-    public List<User> getAllSearchUserDetails(int phoneNumber) {
+    public List<User> getAllSearchUserDetails(int phonenumber) {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Query<User> query = session.createQuery("FROM User WHERE phoneNumber = :phoneNumber", User.class);
-        query.setParameter("phoneNumber", phoneNumber);
+        Query<User> query = session.createQuery("FROM User WHERE phoneNumber = :phonenumber", User.class);
+        query.setParameter("phonenumber", + phonenumber );
+
 
         List<User> resultList = query.getResultList();
 
@@ -112,6 +118,38 @@ public class UserDaoimpl {
 
         Query<User> query = session.createQuery("FROM User ", User.class);
         List<User>  resultList = query.getResultList();
+
+        transaction.commit();
+        session.close();
+        return resultList;
+    }
+
+    public int getUserCount() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Query<Long> countQuery = session.createQuery("SELECT COUNT(*) FROM User", Long.class);
+
+        Long bookCount = countQuery.uniqueResult(); // Get the count of books matching the query
+
+        transaction.commit();
+        session.close();
+
+        // Handle null value
+        return bookCount != null ? bookCount.intValue() : 0;
+    }
+
+    public List<User> getAllSearchUserDetailsUpdate(String username) {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        // Corrected named parameter to match with the query
+        Query<User> query = session.createQuery("FROM User WHERE userName LIKE :username", User.class);
+
+        // Concatenate the wildcard with the parameter value before setting it
+        query.setParameter("username", "%" + username + "%");
+
+        List<User> resultList = query.getResultList();
 
         transaction.commit();
         session.close();

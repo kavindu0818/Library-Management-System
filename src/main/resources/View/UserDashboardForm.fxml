@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -36,14 +37,14 @@
             <Image url="@../Asets/BookHistory.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="17.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="17.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Asets/Library.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="16.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="16.0" layoutY="270.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Asets/book20(1).png" />
+            <Image url="@../Asets/book.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="19.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
@@ -56,10 +57,36 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </JFXButton>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="27.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="19.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Asets/dashboardIcon.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="70.0" fitWidth="224.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Asets/back2.png" />
+         </image>
+      </ImageView>
+      <Separator layoutX="20.0" layoutY="634.0" prefHeight="0.0" prefWidth="143.0" />
+      <JFXButton layoutX="2.0" layoutY="648.0" onAction="#btnChangeOnAction" prefHeight="25.0" prefWidth="164.0" style="-fx-background-color: white;" text="Change Account">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="1022.0" layoutY="11.0" prefHeight="85.0" prefWidth="258.0" style="-fx-background-color: #0e074a; -fx-background-radius: 20;">
+         <children>
+            <Label fx:id="lblTime" layoutX="53.0" layoutY="3.0" prefHeight="53.0" prefWidth="208.0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDate" layoutX="80.0" layoutY="46.0" prefHeight="27.0" prefWidth="132.0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="48.0" layoutY="45.0" prefHeight="3.0" prefWidth="151.0" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -16,4 +16,6 @@ public interface BookHandOverBo extends SuperBo {
     public List<BookHandOverDto> getAllHandOverBook();
 
     public boolean deleteBooking(String bookId);
+
+    int getBookingCount();
 }

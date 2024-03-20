@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="UserHistoryFormController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="568.0" prefWidth="1083.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.History.UserHistoryFormController">
+   <children>
+      <TableView fx:id="tbtUserHistory" layoutX="45.0" layoutY="230.0" prefHeight="306.0" prefWidth="1001.0" stylesheets="@../Css/Table.css">
+        <columns>
+          <TableColumn fx:id="colBookId" prefWidth="144.0" text="Book Id" />
+          <TableColumn fx:id="colBookTitle" prefWidth="309.0" text="Book Title" />
+            <TableColumn fx:id="colBookingDate" prefWidth="282.0" text="Booking Date" />
+            <TableColumn fx:id="colHandOver" prefWidth="265.0" text="Handover Date" />
+        </columns>
+      </TableView>
+      <Label layoutX="503.0" layoutY="17.0" prefHeight="70.0" prefWidth="184.0" text=" History" AnchorPane.leftAnchor="449.0" AnchorPane.rightAnchor="450.0">
+         <font>
+            <Font name="System Bold" size="48.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="46.0" layoutY="125.0" prefHeight="97.0" prefWidth="446.0" style="-fx-background-color: #c8d0e6;">
+         <children>
+            <TextField fx:id="txtSearchBook" layoutX="7.0" layoutY="48.0" promptText="Enter Book Title" style="-fx-background-radius: 10;" />
+            <Label layoutX="8.0" layoutY="27.0" text="Search Book">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

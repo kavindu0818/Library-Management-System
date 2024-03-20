@@ -16,4 +16,7 @@ public interface BookBo extends SuperBo {
     public boolean deleteBook(String id);
 
     public boolean updateBook(BookDto book);
+    public String getLastBookId();
+
+    int setValueBook();
 }

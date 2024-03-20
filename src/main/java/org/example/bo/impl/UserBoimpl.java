@@ -3,6 +3,9 @@ package org.example.bo.impl;
 import org.example.Entity.Book;
 import org.example.Entity.User;
 import org.example.bo.UserBo;
+import org.example.dao.BranchDao;
+import org.example.dao.Custome.DAOFactory;
+import org.example.dao.UserDao;
 import org.example.dao.impl.UserDaoimpl;
 import org.example.dto.BookDto;
 import org.example.dto.HistoryDto;
@@ -15,20 +18,26 @@ public class UserBoimpl implements UserBo {
 
     UserDaoimpl userDaoimpl =new UserDaoimpl();
 
+    UserDao branchDaoimpl = (UserDao) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.USER);
+
     public boolean userSave(UserDto us) {
 
         User user = new User(us.getPhoneNumber(), us.getFullName(), us.getUserName(), us.getPassword(), us.getGmail());
         return userDaoimpl.save(user);
     }
 
-    public List<UserDto> getAllUser(String pas, String userName) {
-        List<UserDto> userList = new ArrayList<>();
-        List<User> users = userDaoimpl.getAll(pas, userName);
+    public List<UserDto> getAllUser(String pas) {
 
-        for (User user: users){
-            userList.add(new UserDto(user.getPhoneNumber(),user.getFullName(),user.getUserName(),user.getPassword(),user.getGmail()));
+
+        List<UserDto> userDtos = new ArrayList<>();
+        List<User> users = userDaoimpl.getAll(pas);
+
+
+        for (User user1 : users) {
+            userDtos.add(new UserDto(user1.getPhoneNumber(),user1.getFullName(),user1.getUserName(),user1.getPassword(),user1.getGmail()));
         }
-        return userList;
+
+        return userDtos;
     }
 
     public UserDto getUser(int id) {
@@ -65,6 +74,32 @@ public class UserBoimpl implements UserBo {
     public List<UserDto> getAllUserAll() {
         List<UserDto> userDtos = new ArrayList<>();
         List<User> users = userDaoimpl.getAllSearchUserDetailsAll();
+
+
+        for (User user1 : users) {
+            userDtos.add(new UserDto(user1.getPhoneNumber(),user1.getFullName(),user1.getUserName(),user1.getPassword(),user1.getGmail()));
+        }
+
+        return userDtos;
+    }
+
+    @Override
+    public int getUserCount() {
+        int set = userDaoimpl.getUserCount();
+        return set;
+    }
+
+    @Override
+    public boolean setUpdate(UserDto us) {
+        User user = new User(us.getPhoneNumber(),us.getFullName(),us.getUserName(),us.getPassword(),us.getGmail());
+        boolean isUpdate = userDaoimpl.update(user);
+        return isUpdate;
+    }
+
+    @Override
+    public List<UserDto> getSearchUserUpdate(String userName) {
+        List<UserDto> userDtos = new ArrayList<>();
+        List<User> users = userDaoimpl.getAllSearchUserDetailsUpdate(userName);
 
 
         for (User user1 : users) {

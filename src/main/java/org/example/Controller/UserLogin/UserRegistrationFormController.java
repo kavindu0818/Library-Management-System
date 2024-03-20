@@ -2,6 +2,7 @@ package org.example.Controller.UserLogin;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import org.example.bo.Custome.BoFactory;
 import org.example.bo.UserBo;
@@ -29,5 +30,10 @@ public class UserRegistrationFormController {
         var us = new UserDto(id,name,user,password,email);
 
         boolean isSave = userBoimpl.userSave(us);
+
+        if(isSave){
+            new Alert(Alert.AlertType.INFORMATION,"Register Ok!").show();
+
+        }
     }
 }

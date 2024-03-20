@@ -1,5 +1,9 @@
+package org.example.Controller.History;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -7,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import org.example.Tm.AdminHistoryTm;
+import org.example.Tm.BooksTm;
 import org.example.Tm.BranchTm;
 import org.example.bo.impl.HistoryBoimpl;
 import org.example.bo.impl.UserBoimpl;
@@ -29,10 +34,12 @@ public class BorrowingHistoryFromController {
 
     UserBoimpl userBoimpl = new UserBoimpl();
     HistoryBoimpl historyBoimpl = new HistoryBoimpl();
+    ObservableList<AdminHistoryTm> oblist = FXCollections.observableArrayList();
 
     public void initialize(){
         loardBranchDetails();
         setCellValueFactory();
+        searchTable();
     }
 
     public void btnSearchBookOnAction(ActionEvent actionEvent) {
@@ -40,18 +47,40 @@ public class BorrowingHistoryFromController {
     private void setCellValueFactory() {
             colBookId.setCellValueFactory(new PropertyValueFactory<>("id"));
             colBookTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-            colBookingDate.setCellValueFactory(new PropertyValueFactory<>("bDate"));
-            colHandOverDate.setCellValueFactory(new PropertyValueFactory<>("hDate"));
-            colCustomerId.setCellValueFactory(new PropertyValueFactory<>("cId"));
-            colCusstomerName.setCellValueFactory(new PropertyValueFactory<>("cName"));
+            colBookingDate.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
+            colHandOverDate.setCellValueFactory(new PropertyValueFactory<>("handOverDate"));
+            colCustomerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
+            colCusstomerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
 
 
     }
+
+    public void searchTable(){
+        FilteredList<AdminHistoryTm> filteredData = new FilteredList<>(oblist, b -> true);
+
+        txtSearchBook.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(adminHistoryTm -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                String bookId = String.valueOf(adminHistoryTm.getId());
+                String title = adminHistoryTm.getTitle().toLowerCase();
+                String genre = adminHistoryTm.getCustomerName().toLowerCase();
+
+                return bookId.contains(lowerCaseFilter) || title.contains(lowerCaseFilter) || genre.contains(lowerCaseFilter);
+            });
+        });
+
+        SortedList<AdminHistoryTm> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tblBookingHisory.comparatorProperty());
+        tblBookingHisory.setItems(sortedData);
+
+    }
         private void loardBranchDetails() {
-            ObservableList<AdminHistoryTm> oblist = FXCollections.observableArrayList();
 
             try {
-
 
                 List<HistoryDto> historyDtoList = historyBoimpl.getAllHistory();
 
@@ -66,7 +95,7 @@ public class BorrowingHistoryFromController {
 
                         String name ="Null"; //userDto.getFullName();
 
-                        oblist.add(new AdminHistoryTm(historyDto.getBookId(),historyDto.getTitle(),historyDto.getBookingDate(),historyDto.getHandOverDate(),historyDto.getCusId(),name));
+                        oblist.add(new AdminHistoryTm(historyDto.getBookId(),historyDto.getTitle(), historyDto.getBookingDate(), historyDto.getHandOverDate(), historyDto.getCusId(),name));
                     }
 
                     tblBookingHisory.setItems(oblist);

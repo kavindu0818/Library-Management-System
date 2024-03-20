@@ -27,6 +27,8 @@ public class BoFactory {
                     return new HistoryBoimpl();
                 case TRANSACTION:
                     return new TransactionBussiness();
+                case USER:
+                    return new UserBoimpl();
                 default:
                     return null;
             }

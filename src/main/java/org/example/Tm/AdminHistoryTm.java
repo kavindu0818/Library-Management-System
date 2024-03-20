@@ -1,23 +1,25 @@
 package org.example.Tm;
 
+import java.util.Date;
+
 public class AdminHistoryTm {
     private String id;
     private String title;
-    private String bDate;
-    private String hDate;
-    private String cId;
-    private String cName;
+    private String bookingDate;
+    private String handOverDate;
+    private String customerId;
+    private String customerName;
 
     public AdminHistoryTm() {
     }
 
-    public AdminHistoryTm(String id, String title, String bDate, String hDate, String cId, String cName) {
+    public AdminHistoryTm(String id, String title, String bookingDate, String handOverDate, String customerId, String customerName) {
         this.id = id;
         this.title = title;
-        this.bDate = bDate;
-        this.hDate = hDate;
-        this.cId = cId;
-        this.cName = cName;
+        this.bookingDate = bookingDate;
+        this.handOverDate = handOverDate;
+        this.customerId = customerId;
+        this.customerName = customerName;
     }
 
     public String getId() {
@@ -36,35 +38,36 @@ public class AdminHistoryTm {
         this.title = title;
     }
 
-    public String getbDate() {
-        return bDate;
+    public String getBookingDate() {
+        return bookingDate;
     }
 
-    public void setbDate(String bDate) {
-        this.bDate = bDate;
+    public void setBookingDate(String bookingDate) {
+        this.bookingDate = bookingDate;
     }
 
-    public String gethDate() {
-        return hDate;
+    public String getHandOverDate() {
+        return handOverDate;
     }
 
-    public void sethDate(String hDate) {
-        this.hDate = hDate;
+    public void setHandOverDate(String handOverDate) {
+        this.handOverDate = handOverDate;
     }
 
-    public String getcId() {
-        return cId;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setcId(String cId) {
-        this.cId = cId;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public String getcName() {
-        return cName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setcName(String cName) {
-        this.cName = cName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
+
 }

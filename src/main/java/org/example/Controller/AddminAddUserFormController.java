@@ -1,13 +1,12 @@
+package org.example.Controller;
+
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.Entity.User;
 import org.example.Tm.BooksTm;
@@ -16,6 +15,7 @@ import org.example.Tm.UserTm;
 import org.example.bo.impl.UserBoimpl;
 import org.example.dto.BookDto;
 import org.example.dto.UserDto;
+import org.example.regex.Regex;
 
 import java.util.List;
 
@@ -114,31 +114,53 @@ public class AddminAddUserFormController {
     }
 
     public void btnUserUpdateOnAction(ActionEvent actionEvent) {
-        int phone = Integer.parseInt(txt2PhoneNumber.getText());
-        String fullName = txt2FullName.getText();
-        String userName = txt2UserName.getText();
-        String password = txt2Password.getText();
-        String gmail = txt2Gmail.getText();
 
-        var user = new UserDto(phone,fullName,userName,password,gmail);
+        if(isCheckValue()){
+            int phone = Integer.parseInt(txt2PhoneNumber.getText());
+            String fullName = txt2FullName.getText();
+            String userName = txt2UserName.getText();
+            String password = txt2Password.getText();
+            String gmail = txt2Gmail.getText();
 
-        boolean isUpdate = userBoimpl.userUpdate(user);
-        clearText1();
-        getAll();
+            if ( fullName.isEmpty() || userName.isEmpty() || password.isEmpty() || gmail.isEmpty()){
+                new Alert(Alert.AlertType.ERROR, "Field Not found").showAndWait();
+                return;
+            }
+
+            var user = new UserDto(phone,fullName,userName,password,gmail);
+
+            boolean isUpdate = userBoimpl.userUpdate(user);
+
+            if(isUpdate){
+                new Alert(Alert.AlertType.INFORMATION,"User Update").show();
+
+            }
+            clearText1();
+            getAll();
+        }
     }
 
     public void btnUserSubmitOnAction(ActionEvent actionEvent) {
-        int phoneNumber = Integer.parseInt(txtPhoneNumber.getText());
-        String fullName = txtFullName.getText();
-        String userName = txtUserName.getText();
-        String password = txtPassword.getText();
-        String gmail = txtGmail.getText();
 
-        var user = new UserDto(phoneNumber,fullName,userName,password,gmail);
+        if(isCheckValue2()) {
 
-        boolean isSave = userBoimpl.userSave(user);
-        getAll();
-        clearText();
+            int phoneNumber = Integer.parseInt(txtPhoneNumber.getText());
+            String fullName = txtFullName.getText();
+            String userName = txtUserName.getText();
+            String password = txtPassword.getText();
+            String gmail = txtGmail.getText();
+
+            if (fullName.isEmpty() || userName.isEmpty() || password.isEmpty() || gmail.isEmpty()) {
+                new Alert(Alert.AlertType.ERROR, "Field Not found").showAndWait();
+                return;
+            }
+
+            var user = new UserDto(phoneNumber, fullName, userName, password, gmail);
+
+            boolean isSave = userBoimpl.userSave(user);
+            getAll();
+            clearText();
+        }
 
     }
 
@@ -190,6 +212,44 @@ public class AddminAddUserFormController {
         txt2UserName.clear();
         txt2PhoneNumber.clear();
         txtSearchUser.clear();
+    }
+
+    private boolean isCheckValue() {
+
+        if (!(Regex.getNamePattern().matcher(txt2FullName.getText()).matches())) {
+            new Alert(Alert.AlertType.WARNING, "Full Name Not Valid").show();
+            return false;
+        }
+
+        if (!(Regex.getEmailPattern().matcher(txt2Gmail.getText()).matches())) {
+            new Alert(Alert.AlertType.WARNING, "Gmail Not Valid").show();
+            return false;
+        }
+
+        if (!(Regex.getMobilePattern().matcher(txt2PhoneNumber.getText()).matches())) {
+            new Alert(Alert.AlertType.WARNING, "Id Not Valid").show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isCheckValue2() {
+
+        if (!(Regex.getNamePattern().matcher(txtFullName.getText()).matches())) {
+            new Alert(Alert.AlertType.WARNING, "Full Name Not Valid").show();
+            return false;
+        }
+
+        if (!(Regex.getEmailPattern().matcher(txtGmail.getText()).matches())) {
+            new Alert(Alert.AlertType.WARNING, "Gmail Not Valid").show();
+            return false;
+        }
+
+        if (!(Regex.getMobilePattern().matcher(txtPhoneNumber.getText()).matches())) {
+            new Alert(Alert.AlertType.WARNING, "ID Not Valid").show();
+            return false;
+        }
+        return true;
     }
 
 

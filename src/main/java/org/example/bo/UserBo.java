@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserBo extends SuperBo {
     public boolean userSave(UserDto us);
-    public List<UserDto> getAllUser(String pas, String userName);
+    public List <UserDto> getAllUser(String pas);
 
     public UserDto getUser(int id);
 
@@ -21,4 +21,9 @@ public interface UserBo extends SuperBo {
 
     public List<UserDto> getAllUserAll();
 
+    int getUserCount();
+
+    boolean setUpdate(UserDto us);
+
+    List<UserDto> getSearchUserUpdate(String userName);
 }

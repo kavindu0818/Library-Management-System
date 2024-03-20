@@ -2,6 +2,8 @@ package org.example.bo.impl;
 
 import org.example.Entity.Book;
 import org.example.bo.BookBo;
+import org.example.dao.BookDao;
+import org.example.dao.Custome.DAOFactory;
 import org.example.dao.impl.BookDaoimpl;
 import org.example.dto.BookDto;
 
@@ -10,7 +12,9 @@ import java.util.List;
 
 
 public class BookBoimpl implements BookBo {
-    BookDaoimpl bookDaoimpl = new BookDaoimpl();
+  //  BookDaoimpl bookDaoimpl = new BookDaoimpl();
+    BookDao bookDaoimpl = (BookDao) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.BOOK);
+
     public boolean saveBook(BookDto book) {
         Book book1 = new Book(book.getId(),book.getTitle(),book.getAuthor(),book.getCatougery(),book.getStatus());
         boolean isSave = bookDaoimpl.save(book1);
@@ -60,4 +64,15 @@ public class BookBoimpl implements BookBo {
 
         return isUpdate;
     }
+
+    public String getLastBookId() {
+        return bookDaoimpl.getLastBookId();
+    }
+
+    @Override
+    public int setValueBook() {
+        int set = bookDaoimpl.getBookCount();
+        return set;
+    }
+
 }

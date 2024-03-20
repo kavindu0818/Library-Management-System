@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ancUserLogin" prefHeight="271.0" prefWidth="242.0" style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.UserLogin.UserLogInSecoundFormController">
+<AnchorPane fx:id="ancUserLogin" prefHeight="271.0" prefWidth="242.0" style="-fx-background-radius: 40; -fx-background-color: #ced2e0;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.Controller.UserLogin.UserLogInSecoundFormController">
    <children>
-      <Label layoutX="83.0" layoutY="7.0" text="Log In" AnchorPane.leftAnchor="85.0" AnchorPane.rightAnchor="85.0">
+      <Label layoutX="86.0" layoutY="7.0" text="Log In" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="84.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Separator layoutX="16.0" layoutY="26.0" prefHeight="0.0" prefWidth="57.0" />
-      <Separator layoutX="169.0" layoutY="26.0" prefHeight="0.0" prefWidth="57.0" />
+      <Separator layoutX="5.0" layoutY="26.0" prefHeight="3.0" prefWidth="72.0" />
+      <Separator layoutX="163.0" layoutY="26.0" prefHeight="3.0" prefWidth="72.0" />
       <Label layoutX="17.0" layoutY="68.0" text="User Name">
          <font>
             <Font name="System Bold" size="12.0" />

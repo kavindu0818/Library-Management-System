@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.Controller.UserAcountUpdateFormController;
 import org.example.bo.Custome.BoFactory;
 import org.example.bo.UserBo;
 import org.example.bo.impl.UserBoimpl;
@@ -21,43 +22,52 @@ public class UserLogInSecoundFormController {
 
     UserBo userBoimpl = (UserBo) BoFactory.getBOFactory().getBO(BoFactory.BOTypes.USER);
 
+  //  UserAcountUpdateFormController userAcountUpdateFormController = new UserAcountUpdateFormController();
 
-    String userName;
-    String pas;
-    public static String id = "774257738";
 
-    public static int sendId(){
-        return Integer.parseInt(id);
-    }
+    public static String us = "null";
+    public static int ph;
+
 
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
+        if (txtUserName == null || txtPassword == null || ancUserLogin == null) {
+            System.err.println("FXML elements are not properly initialized.");
+            return;
+        }
 
-         userName = txtUserName.getText();
-         pas = txtPassword.getText();
+        String userName = txtUserName.getText();
+        String pas = txtPassword.getText();
+
+        System.out.println(userName + " " + pas);
+
 
         try {
-            List<UserDto> userDtos = userBoimpl.getAllUser(pas,userName);
+           List <UserDto> userDtos = userBoimpl.getAllUser(userName);
 
-            for (UserDto userDto:userDtos){
-                id = String.valueOf(userDto.getPhoneNumber());
+           String un = null;
 
+            for (UserDto userDto : userDtos){
+                System.out.println(userDto.getPhoneNumber() + "Hi Hi");
+                ph = userDto.getPhoneNumber();
+                un = userDto.getUserName();
             }
 
-            if (userDtos != null){
+
+            if (userName.equals(un)) {
+
+                us = userName;
 
                 AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/View/UserDashboardForm.fxml"));
                 Scene scene = new Scene(anchorPane);
                 Stage stage = (Stage) ancUserLogin.getScene().getWindow();
                 stage.setScene(scene);
-                stage.setTitle("DashBoard Manage");
+                stage.setTitle("Dashboard Manage");
                 stage.centerOnScreen();
                 stage.show();
             }
-
-
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }
+
